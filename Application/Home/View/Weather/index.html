@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> 【{$data.city}】天气预报</title>
+    <script src="__PUBLIC__/js/jquery-1.11.3.min.js"></script>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            border:0;
+        }
+        html,body{
+            height:100%;
+            box-sizing: border-box;
+            background: #FFFFFF;
+        }
+        .mainbox{
+            width: 100%;
+            height: 400px;
+            /*border:1px solid #CCCCCC;*/
+            margin: auto;
+            position: relative;
+            background-image: -webkit-linear-gradient(top, rgb(72, 86, 99), rgb(161, 184, 202));
+            color: #FFFFFF;
+        }
+        .ul_list_group{
+            display: block;
+            list-style:none;
+            height:100%;
+            width: 100%;
+        }
+        .ul_list_item{
+            text-align: center;
+            display: block;
+            float: left;
+            height:100%;
+            border-left: 1px solid #CCCCCC;
+            width: 16.666%;
+            box-sizing: border-box;
+        }
+        .ul_list_item{
+            line-height: 30px;
+        }
+        .today{
+            width:33.334%;
+
+            height:100%;
+            border-left: 0px solid #FFFFFF;
+        }
+    </style>
+</head>
+<if condition=" ($hour lt 6) OR ($hour gt 18)">
+    <link rel="stylesheet" href="__PUBLIC__/css/weather/weather_night.css">
+
+    <else/>
+    <link rel="stylesheet" href="__PUBLIC__/css/weather/weather_day.css">
+
+</if>
+<body id="bodybox">
+
+        <div class="mainbox">
+
+            <ul class="ul_list_group">
+                <li class="ul_list_item today">
+                    <span>{$data.today.date}</span><br>
+                    <span>{$data.today.week}</span><br>
+                    <img src=" http://php.weather.sina.com.cn/images/yb3/78_78/duoyun_1.png" alt=""><br>
+                    <span>{$data.today.curTemp}</span><br>
+                    <span>{$data.today.type}</span><br>
+                    <span>{$data.today.fengli}</span><br>
+                    <span>{$data.today.lowtemp}~</span>
+                    <span>{$data.today.hightemp}</span><br>
+                    <span>空气健康指数：{$data.today.aqi}</span><br>
+
+                </li>
+
+
+            </ul>
+        </div>
+</body>
+<script>
+    $(function(){
+       /* $.get('http://wthrcdn.etouch.cn/WeatherApi?citykey=101010100',function(data){
+           console.log(data)
+        });*/
+    })
+</script>
+</html>

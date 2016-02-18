@@ -1,0 +1,38 @@
+
+<style>
+    .headerbox{
+        height: 40px;
+        width: 100%;
+        display: block;
+        line-height: 40px;
+        background: #C3E0F1;
+        font-size: 20px;
+        font-weight: 700;
+    }
+    .sys_info_showbox{
+        min-height: 100px;
+        width: 100%;
+        padding: 20px 0;
+    }
+    .sys_label{
+        display: inline-block;
+        width: 150px;
+    }
+    .sys_value{
+        margin-left: 10px;
+    }
+</style>
+<body>
+    <div >
+         <div class="headerbox">系统信息</div>
+         <div class="sys_info_showbox">
+
+                 <volist name="data" id="vo" key="k" >
+                     <p style="display: block;"> <span class="sys_label">{$vo.name}</span>  ： <span class="sys_value"> {$vo.value}</span></p>
+
+                 </volist>
+
+
+         </div>
+    </div>
+</body>

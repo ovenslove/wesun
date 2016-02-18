@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="__PUBLIC__/css/font-awesome.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/css/bootstrap.min.css"/>
+    <script type="text/javascript" src="__PUBLIC__/js/jquery-1.11.3.min.js"></script>
+
+    <script type="text/javascript" src="__PUBLIC__/js/bootstrap.min.js"></script>
+    <style>
+        table{
+            width: 100%;
+        }
+        td{
+
+        }
+    </style>
+</head>
+<body>
+<table class="table table-bordered">
+        <tr>
+            <th>#</th>
+            <th>name</th>
+            <th>描述</th>
+            <th>登录时间</th>
+            <th>注册时间</th>
+            <th>角色</th>
+            <th>状态</th>
+            <th>操作</th>
+        </tr>
+
+        <volist name="data" id="vo">
+            <tr>
+                <td>{$vo.user_id}</td>
+                <td>{$vo.user_name}</td>
+                <td>{$vo.user_remark}</td>
+                <td>{$vo.user_logintime}</td>
+                <td>{$vo.user_registtime}</td>
+                <td>{$vo.remark}({$vo.name})</td>
+                <td>
+                    <if condition="$vo['user_status']">
+                            开启
+                        <else/>
+                            关闭
+                    </if>
+
+                </td>
+                <td>[锁定][修改][删除]</td>
+            </tr>
+        </volist>
+    </table>
+</body>
+</html>

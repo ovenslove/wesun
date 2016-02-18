@@ -1,0 +1,95 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="__PUBLIC__/css/font-awesome.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/css/bootstrap.min.css"/>
+    <script type="text/javascript" src="__PUBLIC__/js/jquery-1.11.3.min.js"></script>
+
+    <script type="text/javascript" src="__PUBLIC__/js/bootstrap.min.js"></script>
+
+
+    <style>
+        table{
+            width: 100%;
+        }
+        tr{
+            height: 40px;
+        }
+        td{
+            padding: 0 20px;
+        }
+    </style>
+</head>
+<body>
+<form action="{:U('Clumnmg/clumn_add_handle')}" method="post">
+        <table class="table">
+            <tr>
+               <td align="right">PID：</td>
+                <td><input type="text" value="{$pid}"  disabled/></td>
+            </tr>
+            <tr>
+                <td align="right">名称：</td>
+                <td><input type="text" name="node_name"/></td>
+            </tr>
+            <tr>
+                <td align="right">描述：</td>
+                <td><input type="text" name="node_intr"/></td>
+            </tr>
+            <tr>
+                <td align="right">视图：</td>
+                <td>
+                    <if condition="$pid eq 0">
+                        <input type="text" name="node_view"  disabled/>
+                        <else/>
+                        <input type="text" name="node_view" />
+                    </if>
+
+                </td>
+            </tr>
+            <tr>
+                <td align="right">排序：</td>
+                <td><input type="text" name="node_sort" value="0"/></td>
+            </tr>
+            <tr>
+                <td align="right">类型：</td>
+                <td>
+                    <if condition="$type eq 1">
+                        <input type="text" name="node_type" value="1" disabled/>(后台：1/前台：2)
+                        <else/>
+                        <input type="text" name="node_type" value="2" disabled/>(后台：1/前台：2)
+                    </if>
+
+
+                </td>
+            </tr>
+            <tr>
+                <td align="right">启用：</td>
+                <td>
+
+                    <input type="radio" name="node_promit" value="1" checked="checked"/>&nbsp;启用
+                    <input type="radio" name="node_promit" value="0"/>&nbsp;关闭
+                </td>
+            </tr>
+            <tr>
+                <td align="right">图标：</td>
+                <td>
+                    <input type="text" name="node_ico"/><span  class="btn btn-default">图标</span>
+
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" value="添加" class="btn default"/>
+
+                </td>
+            </tr>
+        </table>
+        <input type="hidden" name="node_type" value="{$type}" />
+        <input type="hidden" value="{$pid}" name="node_pid"/>
+        <input type="hidden" name="node_level" value="{$level}"/>
+</form>
+
+</body>
+</html>

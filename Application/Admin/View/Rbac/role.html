@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="__PUBLIC__/css/font-awesome.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/css/bootstrap.min.css"/>
+    <script type="text/javascript" src="__PUBLIC__/js/jquery-1.11.3.min.js"></script>
+
+    <script type="text/javascript" src="__PUBLIC__/js/bootstrap.min.js"></script>
+    <style>
+        table{
+            width: 100%;
+        }
+        th,td{
+            text-align: left;
+            height: 24px;
+        }
+        tr{
+            border: 1px solid #cccccc;
+        }
+    </style>
+</head>
+<body>
+
+       <table class="table table-bordered">
+         <thead>
+            <tr>
+                <th>ID</th>
+                <th>名称</th>
+                <th>描述</th>
+                <th>状态</th>
+                <th>操作</th>
+            </tr>
+         </thead>
+           <tbody>
+           <volist name="data" id="vo">
+               <tr>
+                   <td>{$vo.id}</td>
+                   <td>{$vo.name}</td>
+                   <td>{$vo.remark}</td>
+                   <td>
+                       <if condition="$vo['status']  eq 1">
+                            启用
+                           <else/>不启用
+                       </if>
+                       </td>
+                   <td><a href="{:U('Admin/Rbac/access',array('rid'=>$vo['id']))}">[配置权限]</a></td>
+               </tr>
+           </volist>
+           </tbody>
+       </table>
+
+
+</body>
+</html>

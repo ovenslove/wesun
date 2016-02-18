@@ -1,0 +1,198 @@
+
+<link rel="stylesheet" href="__PUBLIC__/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="__PUBLIC__/css/Index/newarticle.css"/>
+
+<script src="__PUBLIC__/js/jquery-1.11.3.min.js"></script>
+<script src="__PUBLIC__/js/bootstrap.min.js"></script>
+<js href="__PUBLIC__/ueditor/ueditor.config.js" />
+<js href="__PUBLIC__/ueditor/ueditor.all.js" />
+<script>
+    window.UEDITOR_HOME_URL='__ROOT__/Public/';
+    $(function(){
+        var ue = UE.getEditor('container',{
+        });
+    })
+</script>
+
+<script type="text/javascript">
+    var result=document.getElementById("new_imgshow");
+    var file=document.getElementById("new_imgshow_btn");
+
+    //判断浏览器是否支持FileReader接口
+    if(typeof FileReader == 'undefined'){
+        result.InnerHTML="<p>你的浏览器不支持FileReader接口！</p>";
+        //使选择控件不可操作
+        file.setAttribute("disabled","disabled");
+    }
+
+    function readAsDataURL(){
+        //检验是否为图像文件
+        var file = document.getElementById("new_imgshow_btn").files[0];
+        if(!/image\/\w+/.test(file.type)){
+            alert("看清楚，这个需要图片！");
+            return false;
+        }
+        var reader = new FileReader();
+        //将文件以Data URL形式读入页面
+        reader.readAsDataURL(file);
+        reader.onload=function(e){
+            var result=document.getElementById("new_imgshow");
+            //显示文件
+            result.src=this.result;
+        }
+    }
+
+</script>
+<style>
+    .maik_ullist{
+        list-style: none;
+        display: block;
+        min-height: 30px;
+        width: 100%;
+        padding: 0;
+    }
+    .maik_ullist li{
+        float: left;
+        margin: 10px 5;
+        cursor: pointer;
+        border: 1px solid #cccccc;
+        border-radius: 5px;
+        padding: 0 5px;
+    }
+    .maik_ullist li:hover{
+        background: #337ab7;
+    }
+    .maik_ullist .active{
+        background: #337ab7;
+    }
+</style>
+
+<body  class="container-fluid" style="background: #f5f5f5;">
+<!--导航条-->
+<!--导航条end-->
+
+<!-- Stack the columns on mobile by making one full-width and the other half-width -->
+<div class="container-fluid">
+    <form action="{:U('Demomg/demo_add_handle')}" method="post" enctype="multipart/form-data">
+        <div class="row">
+
+            <div class="col-xs-12 col-md-12 col-sm-12 " style=" min-height: 400px;">
+                <h3>项目编辑</h3>
+                <div class="input-group input-li-group">
+                    <span class="input-group-addon" >标题 </span>
+                    <input type="text" class="form-control" placeholder=" 请输入项目标题" name="dem_title" >
+                </div>
+
+                <div class="input-group input-li-group">
+                    <span class="input-group-addon" >简介</span>
+                    <textarea type="text" class="form-control textarea_box" placeholder="请输入项目的简介内容"  name="dem_introduce" ></textarea>
+                </div>
+                <div class="input-group input-li-group">
+                    <span class="input-group-addon" >标签</span>
+                    <input type="text" class="form-control mark_input" placeholder="请输入标签"  name="dem_mark" >
+                </div>
+                <div class="input-group" style="text-align: left; line-height: 30px;">
+
+                    <ul class="maik_ullist">
+                        <volist name="markdata" id="mark">
+                            <li>{$mark.mark_name}</li>
+                        </volist>
+
+                    </ul>
+
+                </div>
+                <div class="input-group input-li-group">
+                    <span class="input-group-addon" >类型</span>
+                    <select type="text" class="form-control" name="dem_type"   style="width: 50%;">
+                        <option>请选择文章类型</option>
+                        <volist name="demodata" id="dem">
+
+                            <optgroup label="{$dem.node_intr}">
+                                <if condition="$dem['childs'] eq '' ">
+                                    <else/>
+                                    <volist name="dem['childs']" id="dem1">
+                                        <option>{$dem1.node_intr}</option>
+                                    </volist>
+                                </if>
+                            </optgroup>
+
+
+                        </volist>
+
+                    </select>
+                </div>
+
+                <div class="input-group input-li-group">
+                    <span class="input-group-addon" >图片</span>
+                    <input type="file" class="form-control"  name="dem_preimg"  id="new_imgshow_btn" onchange="readAsDataURL()" style="width: 200px; opacity: 0;">
+                    <button type="button" class="btn btn-primary img_up_btn">请上传预览图</button>
+                </div>
+
+                <div class="col-xs-12 col-md-12 col-sm-12 input-li-group" style=" min-height: 0px; max-height: 200px;">
+                    <img src="" alt="" id="new_imgshow" class="img-thumbnail" style="height: 200px;  width: auto;" alt="请选择照片"/>
+
+                </div>
+                <div class="input-group input-li-group">
+                    <span class="input-group-addon" >预览地址 </span>
+                    <input type="text" class="form-control" placeholder=" 请输入预览地址" name="dem_preurl" >
+                </div>
+                <div class="input-group input-li-group">
+                    <span class="input-group-addon" >下载地址 </span>
+                    <input type="text" class="form-control" placeholder=" 请输入下载地址" name="dem_downurl" >
+                </div>
+                <!-----------------------------ueditor 在线富文本编辑器-->
+                <!--<div class="input-group input-li-group" style="width: 100%;" >
+                    <div  id="container" style="width: 100%; min-height: 300px;" ></div>
+
+                </div>-->
+                <!---------------END-----------ueditor 在线富文本编辑器-->
+                <div class="input-group input-li-group container-fluid" >
+                    <input  class="btn btn-default btn-lg btn-block" type="submit" value="提交" style="background:rgb(126, 237, 195); width: 200px;"/>
+
+                </div>
+
+
+            </div>
+
+
+
+        </div>
+        <input type="hidden" name="id" value="{$data.id}"/>
+    </form>
+</div>
+
+</body>
+<script>
+    $(function(){
+        /*标签添加减少事件*/
+        var markarr=Array();
+
+        $(".maik_ullist li").click(function(){
+            var value=$(this).text();
+            if($.inArray(value,markarr)==-1 && markarr.length<5){
+                markarr.push(value);
+                $(this).addClass('active');
+            }else if($.inArray(value,markarr)==-1 && markarr.length>=5){
+                alert('最多允许5个标签');
+            }else{
+                markarr.splice($.inArray(value,markarr),1);
+                $(this).removeClass('active');
+            }
+            var str='';
+            $.each(markarr,function(key,name){
+                if(key<markarr.length-1){
+                    str+=name+',';
+                }else{
+                    str+=name;
+                }
+            })
+
+            $(".mark_input").val(str);
+
+
+
+        });
+    })
+</script>
+
+

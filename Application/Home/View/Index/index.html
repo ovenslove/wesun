@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1 ,user-scalable=no">
+    <title>WESUN-Ovens Blog</title>
+    <script src="__PUBLIC__/js/jquery-1.11.3.min.js"></script>
+    <link rel="stylesheet" href="__PUBLIC__/css/Public/public.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/css/Index/indexnew.css"/>
+
+    <style>
+
+
+    </style>
+</head>
+<body style="min-height: 1000px;">
+
+    <header>
+        <div class="top-menubox">
+            <div class="menubox">
+                <a href="__ROOT__"> <div class="logo-box">WESUN</div></a>
+                <div class="menu-bar"><i class=" fa fa-bars fa-lg"></i></div>
+                <div class="top-menu">
+                    <div class="menu-list-box">
+                        <ul>
+                            <a href="__ROOT__"><li>首页</li></a>
+                            <a href="{:U('Home/Article/Index')}"><li>文章</li></a>
+                            <li>案例</li>
+                            <li>下载</li>
+                        </ul>
+                    </div>
+                    <div class="search-box">
+                        <input type="text" class="search-input" placeholder="Searching...">
+                        <i class="fa fa-search fa-lg search-btn"></i>
+                        <i class="fa fa-user fa-lg login-btn"></i>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </header>
+    <div class="bannerbox">
+        <img src="__PUBLIC__/images/Index/xingkong.jpg" class="autoimg">
+    </div>
+    <div class="contentbox">
+        <div class="article-listbox">
+
+
+            <volist name="data" id="vo">
+                <div class="art-simbox">
+                    <div class="art-preimg">
+                        <img src="{$vo.art_preimg}" alt="" class="fullimg">
+                    </div>
+                    <div class="art-contentbox">
+                        <div class="art-title-box">
+                            <span class="art-title"><a href="{:U('Home/Article/article',array('art_id'=>$vo['id']),'')}">{$vo.art_title}</a></span>
+                            <volist name="vo.art_mark" id="mark">
+                                <span class="art-type">{$mark}</span>
+                            </volist>
+                            <span class="art-readmore"><a href="{:U('Home/Article/article',array('art_id'=>$vo['id']),'')}">阅读全文</a></span><br>
+                        </div>
+                        <p class="art-contents">{$vo.art_introduce}</p>
+                        <div class="art-infobox">
+                            <span><i class="fa fa-clock-o"></i>{$vo.art_addtime|substr=0,10}</span>
+                            <span><i class="fa fa-eye"></i>{$vo.art_readcount}</span>
+                            <span><i class="fa fa-comments"></i>{$vo.art_commentcount}</span>
+                        </div>
+                    </div>
+                </div>
+
+            </volist>
+
+
+
+
+            <!------------------------------------------------->
+           <!-- <div class="art-simbox">
+                <div class="art-preimg">
+                    <img src="__PUBLIC__/images/Index/preimg.jpeg" alt="" class="fullimg">
+                </div>
+                <div class="art-contentbox">
+                    <div class="art-title-box">
+                        <span class="art-title">ThinkPHP官网全新改版</span><span class="art-type">HTML</span><span class="art-readmore">阅读全文</span><br>
+                    </div>
+                    <p class="art-contents">水电费衷心地感谢一直以来广大新老用户对我们ThinkPHP官网的关心、支持和认可，以及为本网站建设所提出的一系列中肯有益的意见和建议，正因为有广大用户的积
+                        水电费衷心地感谢一直以来广大新老用户对我们ThinkPHP官网的关心、支持和认可，以及为本网站建设所提出的一系列中肯有益的意见和建议，正因为有广大用户的积
+                        水电费衷心地感谢一直以来广大新老用户对我们ThinkPHP官网的关心、支持和认可，以及为本网站建设所提出的一系列中肯有益的意见和建议，正因为有广大用户的积</p>
+                    <div class="art-infobox">
+                        <span><i class="fa fa-clock-o"></i>2016年1月31日</span>
+                        <span><i class="fa fa-eye"></i>2016</span>
+                        <span><i class="fa fa-comments"></i>212</span>
+                    </div>
+                </div>
+            </div>
+            <div class="art-simbox">
+                <div class="art-preimg">
+                    <img src="__PUBLIC__/images/Index/preimg.jpeg" alt="" class="fullimg">
+                </div>
+                <div class="art-contentbox">
+                    <div class="art-title-box">
+                        <span class="art-title">ThinkPHP官网全新改版</span><span class="art-type">HTML</span><span class="art-readmore">阅读全文</span><br>
+                    </div>
+                    <p class="art-contents">水电费衷心地感谢一直以来广大新老用户对我们ThinkPHP官网的关心、支持和认可，以及为本网站建设所提出的一系列中肯有益的意见和建议，正因为有广大用户的积
+                        水电费衷心地感谢一直以来广大新老用户对我们ThinkPHP官网的关心、支持和认可，以及为本网站建设所提出的一系列中肯有益的意见和建议，正因为有广大用户的积
+                        水电费衷心地感谢一直以来广大新老用户对我们ThinkPHP官网的关心、支持和认可，以及为本网站建设所提出的一系列中肯有益的意见和建议，正因为有广大用户的积</p>
+                    <div class="art-infobox">
+                        <span><i class="fa fa-clock-o"></i>2016年1月31日</span>
+                        <span><i class="fa fa-eye"></i>2016</span>
+                        <span><i class="fa fa-comments"></i>212</span>
+                    </div>
+                </div>
+            </div>
+            <div class="art-simbox">
+                <div class="art-preimg">
+                    <img src="__PUBLIC__/images/Index/preimg.jpeg" alt="" class="fullimg">
+                </div>
+                <div class="art-contentbox">
+                    <div class="art-title-box">
+                        <span class="art-title">ThinkPHP官网全新改版</span><span class="art-type">HTML</span><span class="art-readmore">阅读全文</span><br>
+                    </div>
+                    <p class="art-contents">水电费衷心地感谢一直以来广大新老用户对我们ThinkPHP官网的关心、支持和认可，以及为本网站建设所提出的一系列中肯有益的意见和建议，正因为有广大用户的积
+                        水电费衷心地感谢一直以来广大新老用户对我们ThinkPHP官网的关心、支持和认可，以及为本网站建设所提出的一系列中肯有益的意见和建议，正因为有广大用户的积
+                        水电费衷心地感谢一直以来广大新老用户对我们ThinkPHP官网的关心、支持和认可，以及为本网站建设所提出的一系列中肯有益的意见和建议，正因为有广大用户的积</p>
+                    <div class="art-infobox">
+                        <span><i class="fa fa-clock-o"></i>2016年1月31日</span>
+                        <span><i class="fa fa-eye"></i>2016</span>
+                        <span><i class="fa fa-comments"></i>212</span>
+                    </div>
+                </div>
+            </div>
+            <div class="art-simbox">
+            <div class="art-preimg">
+                <img src="__PUBLIC__/images/Index/preimg.jpeg" alt="" class="fullimg">
+            </div>
+            <div class="art-contentbox">
+                <div class="art-title-box">
+                    <span class="art-title">ThinkPHP官网全新改版</span><span class="art-type">HTML</span><span class="art-readmore">阅读全文</span><br>
+                </div>
+                <p class="art-contents">水电费衷心地感谢一直以来广大新老用户对我们ThinkPHP官网的关心、支持和认可，以及为本网站建设所提出的一系列中肯有益的意见和建议，正因为有广大用户的积
+                    水电费衷心地感谢一直以来广大新老用户对我们ThinkPHP官网的关心、支持和认可，以及为本网站建设所提出的一系列中肯有益的意见和建议，正因为有广大用户的积
+                    水电费衷心地感谢一直以来广大新老用户对我们ThinkPHP官网的关心、支持和认可，以及为本网站建设所提出的一系列中肯有益的意见和建议，正因为有广大用户的积</p>
+                <div class="art-infobox">
+                    <span><i class="fa fa-clock-o"></i>2016年1月31日</span>
+                    <span><i class="fa fa-eye"></i>2016</span>
+                    <span><i class="fa fa-comments"></i>212</span>
+                </div>
+            </div>
+        </div>
+            <div class="art-simbox">
+                <div class="art-preimg">
+                    <img src="__PUBLIC__/images/Index/preimg.jpeg" alt="" class="fullimg">
+                </div>
+                <div class="art-contentbox">
+                    <div class="art-title-box">
+                        <span class="art-title">ThinkPHP官网全新改版</span><span class="art-type">HTML</span><span class="art-readmore">阅读全文</span><br>
+                    </div>
+                    <p class="art-contents">水电费衷心地感谢一直以来广大新老用户对我们ThinkPHP官网的关心、支持和认可，以及为本网站建设所提出的一系列中肯有益的意见和建议，正因为有广大用户的积
+                        水电费衷心地感谢一直以来广大新老用户对我们ThinkPHP官网的关心、支持和认可，以及为本网站建设所提出的一系列中肯有益的意见和建议，正因为有广大用户的积
+                        水电费衷心地感谢一直以来广大新老用户对我们ThinkPHP官网的关心、支持和认可，以及为本网站建设所提出的一系列中肯有益的意见和建议，正因为有广大用户的积</p>
+                    <div class="art-infobox">
+                        <span><i class="fa fa-clock-o"></i>2016年1月31日</span>
+                        <span><i class="fa fa-eye"></i>2016</span>
+                        <span><i class="fa fa-comments"></i>212</span>
+                    </div>
+                </div>
+            </div>
+            <div class="art-simbox">
+                <div class="art-preimg">
+                    <img src="__PUBLIC__/images/Index/preimg.jpeg" alt="" class="fullimg">
+                </div>
+                <div class="art-contentbox">
+                    <div class="art-title-box">
+                        <span class="art-title">ThinkPHP官网全新改版</span><span class="art-type">HTML</span><span class="art-readmore">阅读全文</span><br>
+                    </div>
+                    <p class="art-contents">水电费衷心地感谢一直以来广大新老用户对我们ThinkPHP官网的关心、支持和认可，以及为本网站建设所提出的一系列中肯有益的意见和建议，正因为有广大用户的积
+                        水电费衷心地感谢一直以来广大新老用户对我们ThinkPHP官网的关心、支持和认可，以及为本网站建设所提出的一系列中肯有益的意见和建议，正因为有广大用户的积
+                        水电费衷心地感谢一直以来广大新老用户对我们ThinkPHP官网的关心、支持和认可，以及为本网站建设所提出的一系列中肯有益的意见和建议，正因为有广大用户的积</p>
+                    <div class="art-infobox">
+                        <span><i class="fa fa-clock-o"></i>2016年1月31日</span>
+                        <span><i class="fa fa-eye"></i>2016</span>
+                        <span><i class="fa fa-comments"></i>212</span>
+                    </div>
+                </div>
+            </div>
+            <div class="art-simbox">
+                <div class="art-preimg">
+                    <img src="__PUBLIC__/images/Index/preimg.jpeg" alt="" class="fullimg">
+                </div>
+                <div class="art-contentbox">
+                    <div class="art-title-box">
+                        <span class="art-title">ThinkPHP官网全新改版</span><span class="art-type">HTML</span><span class="art-readmore">阅读全文</span><br>
+                    </div>
+                    <p class="art-contents">水电费衷心地感谢一直以来广大新老用户对我们ThinkPHP官网的关心、支持和认可，以及为本网站建设所提出的一系列中肯有益的意见和建议，正因为有广大用户的积
+                        水电费衷心地感谢一直以来广大新老用户对我们ThinkPHP官网的关心、支持和认可，以及为本网站建设所提出的一系列中肯有益的意见和建议，正因为有广大用户的积
+                        水电费衷心地感谢一直以来广大新老用户对我们ThinkPHP官网的关心、支持和认可，以及为本网站建设所提出的一系列中肯有益的意见和建议，正因为有广大用户的积</p>
+                    <div class="art-infobox">
+                        <span><i class="fa fa-clock-o"></i>2016年1月31日</span>
+                        <span><i class="fa fa-eye"></i>2016</span>
+                        <span><i class="fa fa-comments"></i>212</span>
+                    </div>
+                </div>
+            </div>
+            <div class="art-simbox">
+                <div class="art-preimg">
+                    <img src="__PUBLIC__/images/Index/preimg.jpeg" alt="" class="fullimg">
+                </div>
+                <div class="art-contentbox">
+                    <div class="art-title-box">
+                        <span class="art-title">ThinkPHP官网全新改版</span><span class="art-type">HTML</span><span class="art-readmore">阅读全文</span><br>
+                    </div>
+                    <p class="art-contents">水电费衷心地感谢一直以来广大新老用户对我们ThinkPHP官网的关心、支持和认可，以及为本网站建设所提出的一系列中肯有益的意见和建议，正因为有广大用户的积
+                        水电费衷心地感谢一直以来广大新老用户对我们ThinkPHP官网的关心、支持和认可，以及为本网站建设所提出的一系列中肯有益的意见和建议，正因为有广大用户的积
+                        水电费衷心地感谢一直以来广大新老用户对我们ThinkPHP官网的关心、支持和认可，以及为本网站建设所提出的一系列中肯有益的意见和建议，正因为有广大用户的积</p>
+                    <div class="art-infobox">
+                        <span><i class="fa fa-clock-o"></i>2016年1月31日</span>
+                        <span><i class="fa fa-eye"></i>2016</span>
+                        <span><i class="fa fa-comments"></i>212</span>
+                    </div>
+                </div>
+            </div>-->
+            <div class="i_page">{$page}</div>
+        </div>
+
+        <div class="sidebox">
+            <div class="side-contentbox">
+                <ul>
+                    <li>博文</li>
+                    <li>案例</li>
+                    <li>下载</li>
+                    <li>留言</li>
+                    <li>Github</li>
+                    <li style="background: transparent; height: auto;">
+                        <img src="__PUBLIC__/images/Base/qrcode.png" alt="" class="autoimg" style="display: block;">
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-box">
+            <div class="foot-simbox">
+                <div class="foot-title">关于我们</div>
+                <div class="foot-contentbox">
+                    我们是一群热爱WEB的IT青年，从对WEB的刚开始的一无所知到现在的游刃有余我们付出了太多的努力，
+                    但也收获了很多。我们将通过WESUN这个平台，将我们的学习过程分享给大家！ 赶快加入我们吧！
+                </div>
+            </div>
+            <div class="foot-simbox">
+                <div class="foot-title">友情链接</div>
+                <div class="foot-contentbox friend-links">
+                    <ul>
+                        <li>W3school</li>
+                        <li>传智播客</li>
+                        <li>后盾网</li>
+                        <li>瓢城WEB俱乐部</li>
+                        <li>Bootstrap中文网</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="foot-simbox">
+                <div class="foot-title">加入我们</div>
+                <div class="foot-contentbox">
+                    <img src="__PUBLIC__/images/Base/qrcode.png" alt="" class="autoimg" style="display: block; max-width: 120px">
+                </div>
+            </div>
+            <div class="foot-copyright">Copyright © 2016 Oven Liu. All rights reserved. </div>
+        </div>
+
+    </footer>
+</body>
+<script>
+    $(function(){
+        $(".menu-bar").click(function(){
+            $(".top-menu").fadeToggle();
+        });
+        $(".search-btn").click(function(){
+            if($(window).width()>767){
+                $(".search-input").fadeIn(10).animate({width:'200px',opacity:1},700).focus();
+            }
+        });
+        $(".search-input").blur(function(){
+            $(".search-input").animate({width:'0px',opacity:0},700).fadeOut(10);
+        })
+
+    })
+</script>
+</html>

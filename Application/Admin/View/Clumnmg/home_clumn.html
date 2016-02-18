@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="__PUBLIC__/css/font-awesome.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/css/bootstrap.min.css"/>
+    <script type="text/javascript" src="__PUBLIC__/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/bootstrap.min.js"></script>
+</head>
+<body>
+<a href="{:U('Clumnmg/clumn_add',array('type'=>2,'pid'=>0,'level'=>0) )}">[添加]</a>
+<table class="table  table-hover">
+    <tr style="background: #0066cc; color: #ffffff;">
+        <td>ID</td>
+        <td>PID</td>
+        <td>名称</td>
+        <td>描述</td>
+        <td>排序</td>
+        <td>级别</td>
+        <td>视图</td>
+        <td>状态</td>
+        <td>图标</td>
+        <td>显示</td>
+        <td>操作</td>
+    </tr>
+    <volist name="clumndata" id="cl">
+        <tr style="background: #CCCBFD;">
+            <td>{$cl.node_id}</td>
+            <td>{$cl.node_pid}</td>
+            <td>{$cl.node_name}</td>
+            <td>{$cl.node_intr}</td>
+            <td>{$cl.node_sort}</td>
+            <td>{$cl.node_level}</td>
+            <td>{$cl.node_view}</td>
+            <td>{$cl.node_promit}</td>
+            <td><i class="fa fa-{$cl.node_ico}"></i> &nbsp;&nbsp;{$cl.node_ico}</td>
+            <td>
+                <if condition="$cl['node_type'] eq 1">
+                    后台
+                    <else/>
+                    前台
+                </if>
+            </td>
+            <td><a href="{:U('Clumnmg/clumn_add',array('type'=>2,'pid'=>$cl['node_id'],'level'=>1) )}">[添加]</a>
+                <a href="{:U('Clumnmg/clumn_update',array('id'=>$cl['node_id'],'node_type'=>2) )}">[修改]</a>
+                <a href="{:U('Clumnmg/clumn_delete_handle',array('id'=>$cl['node_id'],'node_type'=>2) )}">[删除]</a>
+
+            </td>
+        </tr>
+        <if condition="$cl['childs'] eq '' ">
+
+            <else/>
+
+            <volist name="cl['childs']" id="cl1">
+                <tr style="background: #EFF1FF;">
+                    <td>{$cl1.node_id}</td>
+                    <td>{$cl1.node_pid}</td>
+                    <td>{$cl1.node_name}</td>
+                    <td style="padding-left: 40px;">|----{$cl1.node_intr}</td>
+                    <td>{$cl1.node_sort}</td>
+                    <td>{$cl1.node_level}</td>
+                    <td>{$cl1.node_view}</td>
+                    <td>{$cl1.node_promit}</td>
+                    <td><i class="fa fa-{$cl1.node_ico}"></i> &nbsp;&nbsp;{$cl1.node_ico}</td>
+                    <td>
+                        <if condition="$cl1['node_type'] eq 1">
+                            后台
+                            <else/>
+                            前台
+                        </if>
+                    </td>
+                    <td>
+                        <a href="{:U('Clumnmg/clumn_add',array('type'=>2,'pid'=>$cl1['node_id'],'level'=>2) )}">[添加]</a>
+                        <a href="{:U('Clumnmg/clumn_update',array('id'=>$cl1['node_id'],'node_type'=>2) )}">[修改]</a>
+                        <a href="{:U('Clumnmg/clumn_delete_handle',array('id'=>$cl1['node_id'],'node_type'=>2) )}">[删除]</a>
+                    </td>
+                </tr>
+
+                <if condition="$cl1['childs'] eq '' ">
+
+                    <else/>
+                    <volist name="cl1['childs']" id="cl2">
+                        <tr style="background: #EFF1FF;">
+                            <td>{$cl2.node_id}</td>
+                            <td>{$cl2.node_pid}</td>
+                            <td>{$cl2.node_name}</td>
+                            <td style="padding-left: 80px;">|----{$cl2.node_intr}</td>
+                            <td>{$cl2.node_sort}</td>
+                            <td>{$cl2.node_level}</td>
+                            <td>{$cl2.node_view}</td>
+                            <td>{$cl2.node_promit}</td>
+                            <td><i class="fa fa-{$cl1.node_ico}"></i> &nbsp;&nbsp;{$cl2.node_ico}</td>
+                            <td>
+                                <if condition="$cl2['node_type'] eq 1">
+                                    后台
+                                    <else/>
+                                    前台
+                                </if>
+                            </td>
+                            <td>
+                                <a href="{:U('Clumnmg/clumn_update',array('id'=>$cl2['node_id'],'node_type'=>2) )}">[修改]</a>
+                                <a href="{:U('Clumnmg/clumn_delete_handle',array('id'=>$cl2['node_id'],'node_type'=>2) )}">[删除]</a>
+                            </td>
+                        </tr>
+
+                        <if condition="$cl2['childs'] eq '' ">
+
+                            <else/>
+
+                        </if>
+                    </volist>
+
+                </if>
+            </volist>
+        </if>
+    </volist>
+</table>
+</body>
+</html>

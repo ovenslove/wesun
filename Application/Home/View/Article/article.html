@@ -1,0 +1,558 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,target-densitydpi=high-dpi,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+    <title>{$art.art_title}</title>
+    <link rel="stylesheet" href="__PUBLIC__/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/css/Public/public.css"/>
+
+    <link rel="stylesheet" href="__PUBLIC__/css/reset.css"/>
+    <script src="__PUBLIC__/js/jquery-1.11.3.min.js"></script>
+
+
+
+    <style>
+
+        @media (max-width: 767px){
+            .art_mainbox{  width: 98%;  font-size: 14px; }
+            .art_title{
+                height:40px;
+                line-height:40px;
+                font-size: 20px;
+            }
+        }
+        @media screen and (min-width: 768px) and (max-width: 959px){
+            .art_mainbox{  width: 98%;  }
+        }
+        @media screen and (min-width: 960px) and (max-width: 1199px){
+            .art_mainbox{  width: 80%;  float: left;  }
+
+        }
+        @media screen and (min-width:1200px){
+            .art_mainbox{  width: 80%;  float: left;  }
+
+        }
+
+
+        header{
+            position: relative !important;
+            background: #2a2c39;
+        }
+        .art-contentbox{
+            overflow: hidden !important;
+        }
+        .art_mainbox{
+            line-height:1.5;
+            margin: 0px auto;
+        }
+        .art-box{
+            background: #FFFFFF;
+            box-sizing: border-box;
+            padding: 20px 30px;
+        }
+        .art_title{
+            text-align: left;
+            height:60px;
+            line-height:60px;
+            display: block;
+            font-size: 30px;
+            margin: 0;
+        }
+        .art_intrbtn{
+            text-align: left;
+            color: #989898;
+        }
+        .art_intrbtn i{
+            margin-right: 6px ;
+        }
+        .art_intrbtn span{
+            margin-right:10px;
+        }
+        .art_intr{
+            display: block;
+            width: 100%;
+            margin:10px  auto;
+            line-height:1.5;
+            box-sizing: border-box;
+            padding: 10px;
+            border: 2px dashed #989898;
+            color: #989898;
+        }
+        .art_content{
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+            padding:20px 0px;
+            margin: auto;
+
+        }
+        .art_content img{
+            width: 100%;
+            max-width: 600px;
+        }
+        .art-prev-next-box{
+            width: 100%;
+            background: #FFFFFF;
+            margin: 0px auto 10px;
+            line-height:30px;
+            box-sizing: border-box;
+            padding: 3px 20px ;
+        }
+        .art-comment-box{
+            width: 100%;
+            min-height:200px;
+            background: #FFFFFF;
+            box-sizing: border-box;
+            padding: 0 20px 20px;
+        }
+        .art-comment-titlebox{
+            height:30px;
+            border-bottom: 3px solid #2a2c39;
+            line-height:30px;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+        .art-comments-area-box{
+            min-height:100px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .art-comments-area{
+            height:200px;
+            width: 100%;
+            resize: none;
+            background: #FFFFFF;
+            outline: none;
+            padding: 10px;
+            box-sizing: border-box;
+            text-indent: 0;
+            border: 1px solid #2a2c39;
+        }
+        .art-comments-area-ctrlbox{
+            height:30px;
+            width: 100%;
+            line-height:30px;
+            text-align: right;
+        }
+        .comments-submit{
+            height:30px;
+            width: 80px;
+            background: #0e90d2;
+            display: inline-block;
+            text-align: center;
+            cursor: pointer;
+            color: #ffffff;
+        }
+
+        .art-comment-list-box{
+            width: 100%;
+            min-height:100px;
+        }
+        .comments-listgroup{
+            display: block;
+            width: 100%;
+            height:auto;
+        }
+        .comments-listgroup .list-item{
+            display: block;
+            min-height:30px;
+            width: 100%;
+            margin: 10px auto;
+            overflow: hidden;
+            /*border-bottom: 1px solid #cccccc;*/
+            box-sizing: border-box;
+            padding-bottom: 10px;
+        }
+        .list-item-preimg{
+            width: 60px;
+            height:60px;
+            float: left;
+        }
+        .list-item-comment{
+            height:100%;
+            margin-left: 70px;
+        }
+        .list-item-comment-topbox{
+            height:30px;
+            line-height:30px;
+            font-size: 12px;
+            color: #CCCCCC;
+        }
+        .list-item-comment-topbox span{
+            margin-right: 20px;
+        }
+        .list-item-comment-username{
+            font-size: 14px;
+            color: #000000;
+            margin-right: 20px;
+        }
+        .list-floor{
+            float: right;
+            color: #333;
+            font-size: 14px;
+        }
+        .list-item-comment-mainbox{
+            width: 100%;
+            min-height:30px;
+            text-indent: 2em;
+            font-size: 14px;
+            line-height:1.5;
+        }
+        .list-item-comment-ctrlbox{
+            height:30px;
+            width:100%;
+            text-align: right;
+            line-height:30px;
+        }
+        .list-item-comment-ctrlbox span{
+            margin: 0 5px ;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .art-comment-list-sonbox{
+            margin-left: 65px;
+            box-sizing: border-box;
+            padding: 10px;
+            border: 1px solid #E2E2E2;
+            margin-right: 20px;
+            margin-bottom: 10px;
+            background: rgba(240,240,240,0.2);
+        }
+        .comments-sort-asc{
+            cursor: pointer;
+        }
+        .comments-sort-desc{
+            cursor: pointer;
+            color: #cccccc;
+        }
+        .comments-sort-actived{
+            font-size: 14px ;
+        }
+        .comments-onlyboss{
+            float: right;
+            cursor: pointer;
+        }
+        .comments-elevator{
+            float: right;
+            margin-left:20px;
+            cursor: pointer;
+        }
+        .comments-elevator input{
+            width: 40px;
+            border: 1px solid #cccccc;
+            font-size: 12px;
+            margin: 0 5px;
+            padding: 0 2px;
+        }
+        .comments-elevator-btn{
+
+        }
+        .sidebox-topbox{
+            height:30px;
+            width: 100%;
+            line-height:30px;
+        }
+        .art-push-list-box{
+            width: 100%;
+            height:auto;
+
+        }
+        .art-push-list-group{
+            display: block;
+            width: 100%;
+            min-height:10px;
+        }
+        .art-push-list-item,.art-push-list-item-o{
+            display: block;
+            height:24px;
+            width: auto;
+            background: #cccccc;
+            margin: 10px 0px 10px 30px;
+            position: relative;
+            line-height:24px;
+            box-sizing: border-box;
+            padding: 0 3px;
+            font-size: 14px;
+            text-overflow: ellipsis;
+        }
+        .art-push-list-item::before{
+            content: attr(li-index);
+            display: block;
+            height:24px;
+            width: 24px;
+            background: #00a0d2;
+            position: absolute;
+            left:-28px;
+            top:0px;
+            line-height:24px;
+            text-align: center;
+        }
+        .art-push-list-item-o::before{
+            content: attr(li-index);
+            display: block;
+            height:24px;
+            width: 24px;
+            background: #cccccc;
+            position: absolute;
+            left:-28px;
+            top:0px;
+            line-height:24px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+
+<include file="Public/header" />
+
+    <div class="contentbox art-contentbox">
+        <div class="art_mainbox">
+            <div class="art-box">
+                <h1 class="art_title">{$art.art_title}</h1>
+
+                <p class="art_intrbtn">
+                    <span><i class="fa fa-clock-o"></i>{$art.art_addtime|substr=0,10}</span>
+                    <span><i class="fa fa-eye"></i>{$art.art_readcount}</span>
+                    <span><i class="fa fa-comments"></i>{$art.art_commentcount}</span>
+                </p>
+
+                <p class="art_intr"><b style="color: #333333;">摘要：</b>{$art.art_introduce}</p>
+                <div class="art_content">
+                    {$art.art_content|html_entity_decode}
+                </div>
+                <hr style="height:1px;border:none;border-top:2px dashed #989898;" />
+            </div>
+
+            <div class="art-prev-next-box">
+                <p class="prearticle">
+                    <if condition="$preid eq -1">
+                        已经是第一篇
+                        <else/>
+                        上一篇：<a  target="_top"  href="{:U('Home/Article/article',array('art_id'=>$preid),'')}">{$pretitle}</a>
+                    </if>
+
+                </p>
+                <p class="nextarticle">
+                    <if condition="$nextid eq -1">
+                        已经是最后一篇
+                        <else/>
+                        下一篇：<a target="_top" href="{:U('Home/Article/article',array('art_id'=>$nextid),'')}">{$nexttitle}</a>
+                    </if>
+
+                </p>
+            </div>
+            <div class="art-comment-box">
+                <div class="art-comment-titlebox">
+                    <span style="font-size: 16px">发表评论</span>
+                    <span style=" float:right; font-size: 13px;" >愿您的评论能给大家带来启迪，带来思考，带来意想不到的收获！</span>
+                </div>
+                <div class="art-comments-area-box">
+                    <textarea name="comments" class="art-comments-area" id="art-comments-area"  placeholder="请输入评论内容 ">
+
+                    </textarea>
+                    <div class="art-comments-area-ctrlbox"><span style="float: left; color: #CCCCCC; font-size: 12px;">已输入24/144字</span><span class="comments-submit">发表</span></div>
+                </div>
+                <div class="art-comment-titlebox">
+                    <span style="font-size: 16px ; margin-right: 20px;">所有评论</span>
+                    <span class="comments-sort-asc comments-sort-actived">正序排列</span>|
+                    <span class="comments-sort-desc">逆序排列</span>
+                    <span class="comments-elevator"><input type="number" placeholder="电梯"><span class="comments-elevator-btn"><i class="fa fa-arrow-circle-up"></i></span></span>
+                    <span class="comments-onlyboss">只看楼主</span>
+                </div>
+
+                <div class="art-comment-list-box">
+                    <ul class="comments-listgroup">
+                        <li class="list-item">
+                            <div class="list-item-preimg">
+                                <img src="__PUBLIC__/images/Index/preimg.jpeg" class="fullimg" alt="">
+                            </div>
+                            <div class="list-item-comment">
+                              <div class="list-item-comment-topbox">
+                                  <span class="list-item-comment-username">我叫金三顺</span><span>12小时前</span><span>来自湖南长沙</span><span class="list-floor">1楼</span>
+                              </div>
+                              <div class="list-item-comment-mainbox">
+                                    当我想起我要说什么的时候，我已经错过了机会，现在我只想说，没设计，真心难！
+                                    当我想起我要说什么的时候，我已经错过了机会，现在我只想说，没设计，真心难！
+                              </div>
+                              <div class="list-item-comment-ctrlbox">
+                                  <span>举报</span>
+                                  <span style="color: green">支持(11)</span>
+                                  <span style="color: red">反对(2)</span>
+                                  <span style="color: #00a0d2">回复</span>
+                              </div>
+                            </div>
+                            <div class="art-comment-list-sonbox">
+                                <ul class="comments-listgroup">
+                                    <li class="list-item">
+                                        <div class="list-item-preimg">
+                                            <img src="__PUBLIC__/images/Index/preimg.jpeg" class="fullimg" alt="">
+                                        </div>
+                                        <div class="list-item-comment">
+                                            <div class="list-item-comment-topbox">
+                                                <span class="list-item-comment-username">我叫金三顺</span><span>12小时前</span><span>来自湖南长沙</span><span class="list-floor">#1</span>
+                                            </div>
+                                            <div class="list-item-comment-mainbox">
+                                                当我想起我要说什么的时候，我已经错过了机会，现在我只想说，没设计，真心难！
+                                                当我想起我要说什么的时候，我已经错过了机会，现在我只想说，没设计，真心难！
+                                                当我想起我要说什么的时候，我已经错过了机会，现在我只想说，没设计，真心难！
+                                                当我想起我要说什么的时候，我已经错过了机会，现在我只想说，没设计，真心难！
+                                                当我想起我要说什么的时候，我已经错过了机会，现在我只想说，没设计，真心难！
+                                            </div>
+                                            <div class="list-item-comment-ctrlbox">
+                                                <span>举报</span>
+                                                <span style="color: green">支持(11)</span>
+                                                <span style="color: red">反对(2)</span>
+                                                <span style="color: #00a0d2">回复</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="list-item">
+                                        <div class="list-item-preimg">
+                                            <img src="__PUBLIC__/images/Index/preimg.jpeg" class="fullimg" alt="">
+                                        </div>
+                                        <div class="list-item-comment">
+                                            <div class="list-item-comment-topbox">
+                                                <span class="list-item-comment-username">我叫金三顺</span><span>12小时前</span><span>来自湖南长沙</span><span class="list-floor">#2</span>
+                                            </div>
+                                            <div class="list-item-comment-mainbox">
+                                                当我想起我要说什么的时候，我已经错过了机会，现在我只想说，没设计，真心难！
+                                                当我想起我要说什么的时候，我已经错过了机会，现在我只想说，没设计，真心难！
+                                                当我想起我要说什么的时候，我已经错过了机会，现在我只想说，没设计，真心难！
+                                                当我想起我要说什么的时候，我已经错过了机会，现在我只想说，没设计，真心难！
+                                                当我想起我要说什么的时候，我已经错过了机会，现在我只想说，没设计，真心难！
+                                            </div>
+                                            <div class="list-item-comment-ctrlbox">
+                                                <span>举报</span>
+                                                <span style="color: green">支持(11)</span>
+                                                <span style="color: red">反对(2)</span>
+                                                <span style="color: #00a0d2">回复</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="list-item">
+                            <div class="list-item-preimg">
+                                <img src="__PUBLIC__/images/Index/preimg.jpeg" class="fullimg" alt="">
+                            </div>
+                            <div class="list-item-comment">
+                                <div class="list-item-comment-topbox">
+                                    <span class="list-item-comment-username">我叫金三顺</span><span>12小时前</span><span>来自湖南长沙</span><span class="list-floor">2楼</span>
+                                </div>
+                                <div class="list-item-comment-mainbox">
+                                    当我想起我要说什么的时候，我已经错过了机会，现在我只想说，没设计，真心难！
+                                    当我想起我要说什么的时候，我已经错过了机会，现在我只想说，没设计，真心难！
+                                </div>
+                                <div class="list-item-comment-ctrlbox">
+                                    <span>举报</span>
+                                    <span style="color: green">支持(11)</span>
+                                    <span style="color: red">反对(2)</span>
+                                    <span style="color: #00a0d2">回复</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-item">
+                            <div class="list-item-preimg">
+                                <img src="__PUBLIC__/images/Index/preimg.jpeg" class="fullimg" alt="">
+                            </div>
+                            <div class="list-item-comment">
+                                <div class="list-item-comment-topbox">
+                                    <span class="list-item-comment-username">我叫金三顺</span><span>12小时前</span><span>来自湖南长沙</span><span class="list-floor">3楼</span>
+                                </div>
+                                <div class="list-item-comment-mainbox">
+                                    当我想起我要说什么的时候，我已经错过了机会，现在我只想说，没设计，真心难！
+                                    当我想起我要说什么的时候，我已经错过了机会，现在我只想说，没设计，真心难！
+                                </div>
+                                <div class="list-item-comment-ctrlbox">
+                                    <span>举报</span>
+                                    <span style="color: green">支持(11)</span>
+                                    <span style="color: red">反对(2)</span>
+                                    <span style="color: #00a0d2">回复</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-item">
+                            <div class="list-item-preimg">
+                                <img src="__PUBLIC__/images/Index/preimg.jpeg" class="fullimg" alt="">
+                            </div>
+                            <div class="list-item-comment">
+                                <div class="list-item-comment-topbox">
+                                    <span class="list-item-comment-username">我叫金三顺</span><span>12小时前</span><span>来自湖南长沙</span><span class="list-floor">4楼</span>
+                                </div>
+                                <div class="list-item-comment-mainbox">
+                                    当我想起我要说什么的时候，我已经错过了机会，现在我只想说，没设计，真心难！
+                                    当我想起我要说什么的时候，我已经错过了机会，现在我只想说，没设计，真心难！
+                                </div>
+                                <div class="list-item-comment-ctrlbox">
+                                    <span>举报</span>
+                                    <span style="color: green">支持(11)</span>
+                                    <span style="color: red">反对(2)</span>
+                                    <span style="color: #00a0d2">回复</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-item">
+                            <div class="list-item-preimg">
+                                <img src="__PUBLIC__/images/Index/preimg.jpeg" class="fullimg" alt="">
+                            </div>
+                            <div class="list-item-comment">
+                                <div class="list-item-comment-topbox">
+                                    <span class="list-item-comment-username">我叫金三顺</span><span>12小时前</span><span>来自湖南长沙</span><span class="list-floor">5楼</span>
+                                </div>
+                                <div class="list-item-comment-mainbox">
+                                    当我想起我要说什么的时候，我已经错过了机会，现在我只想说，没设计，真心难！
+                                    当我想起我要说什么的时候，我已经错过了机会，现在我只想说，没设计，真心难！
+                                </div>
+                                <div class="list-item-comment-ctrlbox">
+                                    <span>举报</span>
+                                    <span style="color: green">支持(11)</span>
+                                    <span style="color: red">反对(2)</span>
+                                    <span style="color: #00a0d2">回复</span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <div class="sidebox" style="box-sizing: border-box; padding:0  10px;">
+            <div style="width: 100%; min-height: 100px; background: #FFFFFF; margin-bottom: 10px; box-sizing: border-box; padding: 10px">
+                <div class="sidebox-topbox">
+                    文章推荐
+                </div>
+                <div class="art-push-list-box">
+                    <ul class="art-push-list-group">
+                        <li class="art-push-list-item" li-index="1">ThinkPHP官网全新改版</li>
+                        <li class="art-push-list-item" li-index="2">ThinkPHP官网全新改版</li>
+                        <li class="art-push-list-item" li-index="3">ThinkPHP官网全新改版</li>
+                        <li class="art-push-list-item-o" li-index="4">ThinkPHP官网全新改版</li>
+                        <li class="art-push-list-item-o" li-index="5">ThinkPHP官网全新改版</li>
+                        <li class="art-push-list-item-o" li-index="6">ThinkPHP官网全新改版</li>
+                        <li class="art-push-list-item-o" li-index="7">ThinkPHP官网全新改版</li>
+                        <li class="art-push-list-item-o" li-index="8">ThinkPHP官网全新改版</li>
+                        <li class="art-push-list-item-o" li-index="9">ThinkPHP官网全新改版</li>
+                        <li class="art-push-list-item-o" li-index="10">ThinkPHP官网全新改版</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+<include file="Public/footer" />
+<script>
+    $(function(){
+        $("#art-comments-area").val('');
+    })
+</script>
+</body>
+</html>

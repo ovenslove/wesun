@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript" src="__PUBLIC__/js/jquery-1.11.3.min.js"></script>
+
+    <style>
+        a{
+            text-decoration: none;
+        }
+        .appbox{
+            height: auto;
+            width: 80%;
+            border: 1px solid #ccc;
+            line-height: 30px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+
+        }
+        .ctrlbox{
+            height: auto;
+            width: 80%;
+            border: 1px solid #ccc;
+            line-height: 30px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+
+            margin-left: 30px;
+        }
+         .functionlbox{
+            height: auto;
+            width: 80%;
+            border: 1px solid #ccc;
+            line-height: 30px;
+             margin-top: 5px;
+             margin-bottom: 5px;
+
+             margin-left: 60px;
+
+         }
+        .btn{
+            padding:  0 5px;
+            text-decoration: none;
+            border: 1px solid #cccccc;
+            display: inline-block;
+            height: 24px;
+            border-radius: 5px;
+            line-height: 24px;
+            background: #F5F5F5;
+        }
+.refresh{
+    position: absolute;
+    right: 30px;
+    top: 0px;
+    display: block;
+    height: 24px;
+    width: 40px;
+    background: #B3CFF9;
+    line-height: 24px;
+    text-align: center;
+    padding: 0 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+    </style>
+    <script>
+        $(function(){
+            $(".refresh").click(function(){
+                location.reload();
+            });
+        })
+    </script>
+</head>
+<body style="overflow: hidden;position: relative;">
+    <span class="refresh" >刷新</span>
+   <a  class="addbtn" href="{:U('Rbac/node_add')}"> [添加应用]</a>
+    <volist name="data" id="app">
+        <div class="appbox" ><span>|——{$app.title} </span>
+            <span><a class="btn"  href="{:U('Rbac/node_add',array('pid'=>$app['id'],'level'=>2))}">[添加控制器]</a></span>
+            <span><a class="btn" href="{:U('Rbac/node_update',array('nid'=>$app['id']))}">[修改]</a></span>
+            <span><a class="btn" href="{:U('Rbac/node_delete')}">[删除]</a></span>
+            <volist name="app.child" id="ctrl">
+
+                <div class="ctrlbox" ><span>|——{$ctrl.title}</span>
+                    <span><a  class="btn"  href="{:U('Rbac/node_add',array('pid'=>$ctrl['id'],'level'=>3))}">[添加方法]</a></span>
+                    <span><a class="btn" href="{:U('Rbac/node_update',array('nid'=>$ctrl['id']))}">[修改]</a></span>
+                    <span><a class="btn" href="">[删除]</a></span>
+                <volist name="ctrl.child" id="function">
+
+                    <div class="functionlbox"><span>|——{$function.title}</span>
+                        <span><a class="btn" href="{:U('Rbac/node_update',array('nid'=>$function['id']))}">[修改]</a></span>
+                        <span><a class="btn" href="">[删除]</a></span>
+                    </div>
+
+
+                </volist>
+                </div>
+            </volist>
+        </div>
+    </volist>
+</body>
+</html>

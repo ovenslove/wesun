@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript" src="__PUBLIC__/js/jquery-1.11.3.min.js"></script>
+
+    <style>
+        .appbox{
+            height: auto;
+            width: 80%;
+            border: 1px solid #ccc;
+            line-height: 30px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+
+        }
+        .ctrlbox{
+            height: auto;
+            width: 80%;
+            border: 1px solid #ccc;
+            line-height: 30px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+
+            margin-left: 30px;
+        }
+        .functionlbox{
+            height: auto;
+            width: 80%;
+            border: 1px solid #ccc;
+            line-height: 30px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+
+            margin-left: 60px;
+
+        }
+        .addbtn{
+            padding:  0 5px;
+            text-decoration: none;
+            border: 1px solid #cccccc;
+            display: inline-block;
+            height: 24px;
+            border-radius: 5px;
+            line-height: 24px;
+            background: #F5F5F5;
+        }
+
+    </style>
+    <script>
+        $(function(){
+            /*应用层级别选中事件*/
+            $("input[level=1]").click(function(){
+                var allinput=$(this).parent('div').find('input');
+               $(this).prop('checked') ? allinput.prop('checked','checked') : allinput.removeProp('checked');
+            });
+            /*控制器级别选中事件*/
+            $("input[level=2]").click(function(){
+                var allinput=$(this).parent('div').find('input');
+
+                $(this).prop('checked') ? allinput.prop('checked','checked') : allinput.removeProp('checked');
+
+                var ppp=$(this).parent().parent().find('input');
+                var mm=0;
+                ppp.each(function(){
+                    if($(this).prop('checked')){
+                        mm++;
+                    }
+                })
+                console.log(mm);
+
+                if($(this).prop('checked')){
+                    allinput.prop('checked','checked');
+                    var aa=$(this).parent('div').parent().find('input').eq(0);
+                    aa.prop('checked','checked');
+                }else{
+                    if(mm>1){
+
+                    }else{
+                        var aa=$(this).parent('div').parent().find('input').eq(0);
+                        aa.removeProp('checked');
+                        allinput.removeProp('checked');
+                    }
+
+                }
+            });
+
+            /*方法节点选中事件*/
+            $("input[level=3]").click(function(){
+                var allinput=$(this).parent('div').parent('div').find('input');/*控制器级父容器以下的所有input元素*/
+                var mm=0;/*方法层选中的个数，包含控制器*/
+                var ll=$(this).parent('div').parent('div').parent('div').find('input');/*应用级父容器以下的所有input元素*/
+                var kk=0;/*控制器层选中的个数，包含方法层 和 父应用层*/
+                /*检查控制器内的方法节点是否为空，如果为空，则将控制器取消勾选*/
+                allinput.each(function(){
+                    if($(this).prop('checked')){
+                        mm++;
+                    }
+                })
+                /*检查应用内的控制器节点是否为空，如果为空，则将应用取消勾选*/
+
+                ll.each(function(){
+                    if($(this).prop('checked')){
+                        kk++;
+                    }
+                })
+
+                if($(this).prop('checked')){
+                    allinput.eq(0).prop('checked','checked');
+                    ll.eq(0).prop('checked','checked');
+
+                }else{
+                    /*判断方法级*/
+                    if(mm>1){
+                        allinput.eq(0).prop('checked','checked')
+                    }else{
+                        allinput.eq(0).removeProp('checked');
+                    }
+                    /*判断控制器级*/
+                    if(kk>2){
+
+                    }else{
+                        ll.eq(0).removeProp('checked');
+                    }
+                }
+            });
+
+
+        })
+    </script>
+</head>
+<body style="overflow: hidden">
+<a  class="addbtn" href="{:U('Rbac/role')}"> 返回</a>
+
+    <form action="{:U('Rbac/setAccess')}" method="post">
+        <volist name="data" id="app">
+            <div class="appbox"><span>|——{$app.title}</span>
+                <if condition="$app['access']">
+                    <input type="checkbox"  name="access[]" value="{$app.id}_1" level="1" checked="checked" />
+                    <else/>
+                    <input type="checkbox"  name="access[]" value="{$app.id}_1" level="1" />
+                </if>
+
+                <volist name="app.child" id="ctrl">
+
+                    <div class="ctrlbox"><span>|——{$ctrl.title}</span>
+                        <if condition="$ctrl['access']">
+                            <input  type="checkbox" name="access[]" value="{$ctrl.id}_2" level="2" checked="checked" />
+                            <else/>
+                            <input  type="checkbox" name="access[]" value="{$ctrl.id}_2" level="2"  />
+                        </if>
+                        <volist name="ctrl.child" id="function">
+
+                            <div class="functionlbox"><span>|——{$function.title} </span>
+                                <if condition="$function['access']">
+                                    <input type="checkbox" name="access[]" value="{$function.id}_3" level="3" checked="checked" />
+
+                                    <else/>
+                                    <input type="checkbox" name="access[]" value="{$function.id}_3" level="3"/>
+
+                                </if>
+                            </div>
+
+
+                        </volist>
+                    </div>
+                </volist>
+            </div>
+        </volist>
+        <input type="hidden" name="rid" value="{$rid}"/>
+        <input type="submit" value="提交" style="display: block; width: 10%; height: 30px; background: #ccc; margin: auto; border-radius: 5px;"/>
+    </form>
+</body>
+</html>

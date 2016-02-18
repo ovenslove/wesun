@@ -1,0 +1,238 @@
+
+<link rel="stylesheet" href="__PUBLIC__/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="__PUBLIC__/css/Index/newarticle.css"/>
+
+<script src="__PUBLIC__/js/jquery-1.11.3.min.js"></script>
+<script src="__PUBLIC__/js/bootstrap.min.js"></script>
+<js href="__PUBLIC__/ueditor/ueditor.config.js" />
+<js href="__PUBLIC__/ueditor/ueditor.all.js" />
+<style>
+    input:disabled{
+        background: transparent;
+    }
+</style>
+<script>
+    window.UEDITOR_HOME_URL='__ROOT__/Public/';
+    /*浏览器自带转换功能，新建一个节点容器，
+     输入数据后再提取出来的就是已经转码的，正想逆向同样适用*/
+    function HTMLDecode ( input )
+    {
+        var converter = document.createElement("DIV");
+        converter.innerHTML = input;
+        var output = converter.innerText;
+        converter = null;
+        return output;
+    }
+
+    $(function(){
+        var cc=HTMLDecode('{$data.dem_content}');
+        var ue = UE.getEditor('container',{
+        });
+        ue.ready(function() {
+            ue.setContent(cc);
+        });
+
+    })
+</script>
+
+<script type="text/javascript">
+
+    var result=document.getElementById("new_imgshow");
+    var file=document.getElementById("new_imgshow_btn");
+
+    //判断浏览器是否支持FileReader接口
+    if(typeof FileReader == 'undefined'){
+        result.InnerHTML="<p>你的浏览器不支持FileReader接口！</p>";
+        //使选择控件不可操作
+        file.setAttribute("disabled","disabled");
+    }
+
+    function readAsDataURL(){
+        //检验是否为图像文件
+        var file = document.getElementById("new_imgshow_btn").files[0];
+        if(!/image\/\w+/.test(file.type)){
+            alert("看清楚，这个需要图片！");
+            return false;
+        }
+        var reader = new FileReader();
+        //将文件以Data URL形式读入页面
+        reader.readAsDataURL(file);
+        reader.onload=function(e){
+            var result=document.getElementById("new_imgshow");
+            //显示文件
+            result.src=this.result;
+        }
+    }
+
+</script>
+<style>
+    .maik_ullist{
+        list-style: none;
+        display: block;
+        min-height: 30px;
+        width: 100%;
+        padding: 0;
+    }
+    .maik_ullist li{
+        float: left;
+        margin: 10px 5;
+        cursor: pointer;
+        border: 1px solid #cccccc;
+        border-radius: 5px;
+        padding: 0 5px;
+    }
+    .maik_ullist li:hover{
+        background: #337ab7;
+    }
+    .maik_ullist .active{
+        background: #337ab7;
+    }
+</style>
+<body  class="container-fluid" style="background: #f5f5f5;">
+<!--导航条-->
+<!--导航条end-->
+<a href="{:U('Demomg/demo_all')}"><span class="btn backlist" style=" border: 1px solid #cccccc; margin: 10px ;"> << 返回列表</span></a>
+<!-- Stack the columns on mobile by making one full-width and the other half-width -->
+<div class="container-fluid">
+    <form action="{:U('Demomg/demo_update_handle')}" method="post" enctype="multipdem/form-data">
+        <div class="row">
+
+            <div class="col-xs-12 col-md-12 col-sm-12 " style=" min-height: 400px;">
+                <h3>文本编辑</h3>
+                <div class="input-group input-li-group">
+                    <span class="input-group-addon" >标题 </span>
+                    <input type="text" class="form-control" value="{$data.dem_title}" placeholder=" 请输入文章标题" name="dem_title"  >
+                </div>
+
+                <div class="input-group input-li-group">
+                    <span class="input-group-addon" >简介</span>
+                    <textarea type="text" class="form-control textarea_box" value="" placeholder="请输入文章的简介内容"  name="dem_introduce"  ></textarea>
+                </div>
+                <div class="input-group input-li-group">
+                    <span class="input-group-addon" >标签</span>
+                    <input type="text" class="form-control mark_input" placeholder="请输入标签"  name="dem_mark"  value="{$data.dem_mark}">
+                </div>
+                <div class="input-group" style="text-align: left; line-height: 30px;">
+
+                    <ul class="maik_ullist">
+                        <volist name="markdata" id="mark">
+                            <li>{$mark.mark_name}</li>
+                        </volist>
+
+                    </ul>
+
+                </div>
+                <div class="input-group input-li-group">
+                    <span class="input-group-addon" >类型</span>
+                    <select type="text" class="form-control" name="dem_type" value="{$data.dem_type}"   style="width: 50%;" >
+                        <option>请选择文章类型</option>
+                        <volist name="demodata" id="dem">
+
+                            <optgroup label="{$dem.node_intr}">
+                                <if condition="$dem['childs'] eq '' ">
+                                    <else/>
+                                    <volist name="dem['childs']" id="dem1">
+                                        <if condition="$data['dem_type'] eq $dem1['node_intr']">
+                                            <option selected="selected">{$dem1.node_intr}</option>
+                                            <else/>
+                                            <option>{$dem1.node_intr}</option>
+                                        </if>
+
+                                    </volist>
+                                </if>
+                            </optgroup>
+
+
+                        </volist>
+
+                    </select>
+                </div>
+
+                <div class="input-group input-li-group">
+                    <span class="input-group-addon" >图片</span>
+                    <input type="file" class="form-control"  name="dem_preimg"  id="new_imgshow_btn" onchange="readAsDataURL()" style="width: 200px; opacity: 0;" >
+                    <button type="button" class="btn btn-primary img_up_btn">请上传预览图</button>
+                </div>
+
+                <div class="col-xs-12 col-md-12 col-sm-12 input-li-group" style=" min-height: 0px; max-height: 200px;">
+                    <img src="{$data.dem_preimg}" alt="" id="new_imgshow" class="img-thumbnail" style="height: 200px;  width: auto;" alt="请选择照片"/>
+
+                </div>
+                <div class="input-group input-li-group">
+                    <span class="input-group-addon" >预览地址 </span>
+                    <input type="text" class="form-control" value="{$data.dem_preurl}" placeholder=" 请输入预览地址" name="dem_preurl" >
+                </div>
+                <div class="input-group input-li-group">
+                    <span class="input-group-addon" >下载地址 </span>
+                    <input type="text" class="form-control" value="{$data.dem_downurl}" placeholder=" 请输入下载地址" name="dem_downurl" >
+                </div>
+                <!-----------------------------ueditor 在线富文本编辑器-->
+               <!-- <div class="input-group input-li-group" style="width: 100%;" >
+                    <div  id="container" style="width: 100%; min-height: 300px;" >
+
+                    </div>
+
+                </div>-->
+                <!---------------END-----------ueditor 在线富文本编辑器-->
+                <div class="input-group input-li-group container-fluid" >
+                    <input  class="btn btn-default btn-lg btn-block" type="submit" value="提交" style="background:rgb(126, 237, 195); width: 200px;" />
+
+                </div>
+
+
+            </div>
+
+
+
+        </div>
+        <input type="hidden" name="id" value="{$data.dem_id}"/>
+    </form>
+</div>
+
+</body>
+<script>
+    $(function(){
+
+
+        /*标签添加减少事件*/
+        var markstr="{$data.dem_mark}";
+        var markarr=markstr.split(',');
+
+        $(".maik_ullist li").each(function(name){
+            var value=$(this).text();
+
+            if($.inArray(value,markarr)!=-1){
+                $(this).addClass('active');
+            }
+        });
+        $(".maik_ullist li").click(function(){
+            var value=$(this).text();
+            if($.inArray(value,markarr)==-1 && markarr.length<5){
+                markarr.push(value);
+                $(this).addClass('active');
+            }else if($.inArray(value,markarr)==-1 && markarr.length>=5){
+                alert('最多允许5个标签');
+            }else{
+                markarr.splice($.inArray(value,markarr),1);
+                $(this).removeClass('active');
+            }
+            var str='';
+            $.each(markarr,function(key,name){
+                if(key<markarr.length-1){
+                    str+=name+',';
+                }else{
+                    str+=name;
+                }
+            })
+
+            $(".mark_input").val(str);
+
+        });
+
+        $(".textarea_box").val("{$data.dem_introduce}");
+
+
+    })
+</script>
+
+

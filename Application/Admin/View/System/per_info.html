@@ -1,0 +1,169 @@
+<style>
+
+    .sim_box{
+        height: 40px;
+        width: 100%;
+        margin: 10px auto;
+        line-height: 40px;
+        -webkit-text-size-adjust:none;
+    }
+    .s_label{
+        display: inline-block;
+        height: 39px;
+        min-width: 15%;
+        text-align: right;
+        padding-right: 10px;
+        font-weight: 700;
+    }
+    .s_inputbox{
+        display: inline-block;
+        height: 100%;
+        width: 300px;
+        position: relative;
+        top: -1px;
+    }
+    .s_inputbox input{
+        display: inline-block;
+        height: 40px;
+        width: 100%;
+        border: 1px solid #cccccc;
+        outline: none;
+        font-size: 14px;
+        box-sizing: border-box;
+        padding:  0 10px;
+        background: transparent;
+
+    }
+    .update_btn{
+        height: 100%;
+        width: 100px;
+        border-radius: 5px;
+        font-size: 18px;
+    }
+
+    .headbox{
+        height: 40px;
+        width: 100%;
+        background: #2D64B3;
+        color: #fff;
+        line-height: 40px;
+    }
+    .head_span{
+        height: 100%;
+        width: auto;
+        display: inline-block;
+        margin: 0 10px;
+        cursor: pointer;
+        padding: 0 5px;
+    }
+    .map_showbox{
+        width: 100%;
+        min-height: 200px;
+        border: 1px solid #5795EF;
+        box-sizing: border-box;
+        margin-top: 20px;
+    }
+    .map_libox{
+        width: 100%;
+        min-height: 200px;
+        display: none;
+    }
+    .map_active{
+        display: block;
+    }
+    .head_active{
+        background: #000088;
+    }
+</style>
+<body style="min-height: 100px">
+    <div class="headbox">
+        <span class="head_span head_active">基本信息</span>
+        <span class="head_span">修改密码</span>
+        <!--添加span即可-->
+    </div>
+    <div class="map_showbox">
+        <div class="map_libox map_active">
+            <div>
+                <div class="sim_box"></div>
+                <form action="{:U('per_infoupdate','','')}" method="post">
+                    <div class="sim_box">
+                        <div class="s_label">账号：</div><div class="s_inputbox"><input type="text" name="user_name" value="{$data.user_name}"/></div>
+                    </div>
+
+                    <div class="sim_box">
+                        <div class="s_label">昵称：</div><div class="s_inputbox"><input type="text" name="user_remark" value="{$data.user_remark}"/></div>
+                    </div>
+                    <div class="sim_box">
+                        <div class="s_label">类型：</div><div class="s_inputbox">
+                          <input type="text" value="{$data.remark}" disabled/>
+                    </div>
+                    </div>
+                    <div class="sim_box">
+                        <div class="s_label">邮箱：</div><div class="s_inputbox"><input type="text" name="user_email" value="{$data.user_email}" /></div>
+                    </div>
+                    <div class="sim_box">
+                        <div class="s_label">手机：</div><div class="s_inputbox"><input type="text" name="user_phone" value="{$data.user_phone}"/></div>
+                    </div>
+                    <div class="sim_box">
+                        <div class="s_label">QQ：</div><div class="s_inputbox"><input type="text" name="user_qqnumber" value="{$data.user_qqnumber}"/></div>
+                    </div>
+                    <div class="sim_box">
+                        <div class="s_label">网站名称：</div><div class="s_inputbox"><input type="text" name="user_websitename" value="{$data.user_websitename}"/></div>
+                    </div>
+                    <div class="sim_box">
+                        <div class="s_label">网站地址：</div><div class="s_inputbox"><input type="text" name="user_websiteurl" value="{$data.user_websiteurl}"/></div>
+                    </div>
+
+
+                    <div class="sim_box">
+                        <div class="s_label"></div><input type="submit" class="update_btn"  value="更新"/>
+                    </div>
+                    <input type="hidden" name="user_id" value="{$data.user_id}"/>
+                </form>
+
+            </div>
+
+
+        </div><!--baseinfo-->
+
+        <div class="map_libox" >
+            <form action="{:U('per_psdup_handle','','')}" method="post">
+
+                <div class="sim_box">
+                    <div class="s_label">旧密码：</div><div class="s_inputbox"><input type="text" name="user_psdold" /></div>
+                </div>
+                <div class="sim_box">
+                    <div class="s_label">新密码：</div><div class="s_inputbox"><input type="text" name="user_psdnew1" /></div>
+                </div>
+                <div class="sim_box">
+                    <div class="s_label">确认密码：</div><div class="s_inputbox"><input type="text" name="user_psdnew2" /></div>
+                </div>
+                <div class="sim_box">
+                    <div class="s_label"></div><div class="s_inputbox"><input type="submit"  value="提交" /></div>
+                </div>
+                <input type="hidden" name="user_id" value="{$data.user_id}"/>
+            </form>
+        </div>
+
+
+    <!--添加容器即可-->
+    </div>
+
+
+
+
+
+</body>
+
+
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.11.3.min.js"></script>
+
+<script>
+    $(function(){
+       $(".head_span").click(function(){
+           $(".head_span").removeClass('head_active').eq($(this).index()).addClass('head_active');
+           $(".map_libox").removeClass('map_active').eq($(this).index()).addClass('map_active');
+
+       });
+    })
+</script>

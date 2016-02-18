@@ -1,0 +1,39 @@
+<header>
+    <div class="top-menubox">
+        <div class="menubox">
+            <a href="__ROOT__/"> <div class="logo-box">WESUN</div></a>
+            <div class="menu-bar"><i class=" fa fa-bars fa-lg"></i></div>
+            <div class="top-menu">
+                <div class="menu-list-box">
+                    <ul>
+                        <a href="__ROOT__/"><li>首页</li></a>
+                        <a href=""><li>文章</li></a>
+                        <li>案例</li>
+                        <li>下载</li>
+                    </ul>
+                </div>
+                <div class="search-box">
+                    <input type="text" class="search-input" placeholder="Searching...">
+                    <i class="fa fa-search fa-lg search-btn"></i>
+                    <i class="fa fa-user fa-lg login-btn"></i>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</header>
+<script>
+    $(function(){
+        $(".menu-bar").click(function(){
+            $(".top-menu").fadeToggle();
+        });
+        $(".search-btn").click(function(){
+            if($(window).width()>767){
+                $(".search-input").fadeIn(10).animate({width:'200px',opacity:1},700).focus();
+            }
+        });
+        $(".search-input").blur(function(){
+            $(".search-input").animate({width:'0px',opacity:0},700).fadeOut(10);
+        })
+    })
+</script>

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .mainbox{
+            min-height: 400px;
+            width: 100%;
+            border: 1px solid #cccccc;
+        }
+        .sim_box{
+            height: 30px;
+            width: 60%;
+            margin:  10px auto;
+            line-height: 30px;
+
+        }
+    </style>
+</head>
+<body>
+<div class="mainbox">
+    <form action="{:U('role_add_handle')}" method="post">
+    <div class="sim_box"><span>name：</span><input type="text" name="role_name"/></div>
+    <div class="sim_box"><span>名称：</span><input type="text" name="role_remark"/></div>
+    <div class="sim_box"> <span>启用：</span><input type="radio" name="role_status" value="1" checked="checked"/>启用<input type="radio" name="role_status" value="0"/>不启用</div>
+    <div class="sim_box"><input type="submit"  value="添加"/></div>
+    </form>
+
+
+</div>
+</body>
+</html>

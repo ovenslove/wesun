@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,target-densitydpi=high-dpi,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+    <title>案例</title>
+    <link rel="stylesheet" href="__PUBLIC__/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/css/font-awesome.min.css"/>
+
+    <link rel="stylesheet" href="__PUBLIC__/css/swiper.min.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/css/Demo/demo.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/css/Public/public.css"/>
+    <script src="__PUBLIC__/js/jquery-1.11.3.min.js"></script>
+    <script src="__PUBLIC__/js/bootstrap.min.js"></script>
+    <script src="__PUBLIC__/js/swiper.min.js"></script>
+
+    <style>
+
+        .art_type{
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 12px;
+
+        }
+
+        .sim_box{
+            height: 250px;
+            padding: 10px;
+
+        }
+        .full{
+            height: 100%;
+            width: 100%;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            padding: 10px;
+            box-shadow:  0 0 18px -6px rgba(0,0,0,0.6);
+            cursor: pointer;
+        }
+        .sim_img{
+            width: 100%;
+            height: 75%;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            position: relative;
+            z-index: 11;
+        }
+        .sim_footbox{
+            height: 25%;
+            width: 100%;
+            background: #F5F5F5;
+            border-bottom-right-radius: 5px;
+            border-bottom-left-radius: 5px;
+        }
+        .sim_span_title{
+            display: block;
+            height: 55%;
+            width: 100%;
+            overflow: hidden;
+            line-height: 160%;
+            text-align: center;
+            position: relative;
+            font-size: 14px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        .sim_span_foot{
+            height: 45%;
+            width: 100%;
+            display: block;
+            margin: 0 5px;
+            line-height:140%;
+            position: relative;
+            border-top:1px dashed #cccccc;
+            font-size: 10px;
+            color: #969191;
+        }
+        .marklabel{
+            line-height: 3.2;
+            cursor: pointer;
+            padding: 10px;
+            background: #cccccc;
+
+        }
+        .marklabel:hover{
+            background: #00CC33;
+        }
+    </style>
+</head>
+<body class="container-fluid">
+
+<include file="Public/menu" />
+<div class="row" >
+    <div class=" col-xs-12 col-sm-12 col-md-10  col-md-offset-1">
+        <div class="headmarkbox">
+            <ul  class="mark_ul">
+                <a href="{:U('Home/Demo/markshowarticle',array('mark'=>''),'')}"><li>全部</li></a>
+                <volist name="mark" id="mk">
+                    <if condition="($markactive neq '' ) and ($markactive eq $mk['mark_name']) ">
+                        <li style="background: #568DF1; color: #ffffff;">{$markactive}</li>
+                        <else/>
+                        <a href="{:U('Home/Article/markshowarticle',array('mark'=>$mk['mark_name']),'')}"><li>{$mk.mark_name}</li></a>
+                    </if>
+
+                </volist>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="row" >
+    <div class=" col-xs-12 col-sm-12 col-md-10 col-md-offset-1 i_mainbox" >
+        <div class="articlebox">
+
+            <div class="row">
+
+
+
+                <volist name="data" id="vo">
+                    <div class="col-xs-12 col-sm-4 col-md-3  sim_box">
+
+                        <div class="sim_demo full">
+                            <a href="{:U('Demo/demo_show',array('id'=>$vo['dem_id']) )}">
+                                <img src="{$vo.dem_preimg}" class="sim_img"/>
+                            </a>
+                            <div class="sim_footbox">
+                                <div class="sim_span_title">{$vo.dem_title}</div>
+                                <div class="sim_span_foot">
+                                    <span style="margin-left: 10px;">{$vo.dem_addtime|substr=0,10}</span>
+                                    <span><i class="fa fa-eye"></i>{$vo.dem_readcount}</span>
+                                    <span><i class="fa fa-download"></i>{$vo.dem_downcount}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </volist>
+
+
+
+
+
+            </div>
+            <div class="i_page">{$page}</div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-4 col-md-2 ">
+        <div class="i_sidebox">
+
+        </div>
+    </div>
+</div>
+<include file="Public/footer" />
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+        paginationClickable: true,
+        centeredSlides: true,
+        autoplay: 2500,
+        autoplayDisableOnInteraction: false,
+        loop:true
+    });
+</script>
+</body>
+</html>

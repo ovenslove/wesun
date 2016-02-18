@@ -1,0 +1,87 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="__PUBLIC__/css/font-awesome.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/css/bootstrap.min.css"/>
+    <script type="text/javascript" src="__PUBLIC__/js/jquery-1.11.3.min.js"></script>
+
+    <script type="text/javascript" src="__PUBLIC__/js/bootstrap.min.js"></script>
+
+
+    <style>
+        table{
+            width: 100%;
+        }
+        tr{
+            height: 40px;
+        }
+        td{
+            padding: 0 20px;
+        }
+    </style>
+</head>
+<body>
+<form action="{:U('Clumnmg/clumn_update_handle')}" method="post">
+    <table class="table">
+        <tr>
+            <td align="right">PID：</td>
+            <td><input type="text" value="{$data.node_pid}" name="node_pid"/></td>
+        </tr>
+        <tr>
+            <td align="right">名称：</td>
+            <td><input type="text" name="node_name" value="{$data.node_name}"  /></td>
+        </tr>
+        <tr>
+            <td align="right">描述：</td>
+            <td><input type="text" name="node_intr" value="{$data.node_intr}" /></td>
+        </tr>
+        <tr>
+            <td align="right">视图：</td>
+            <td><input type="text" name="node_view" value="{$data.node_view}"/>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">排序：</td>
+            <td><input type="text" name="node_sort" value="{$data.node_sort}"/></td>
+        </tr>
+        <tr>
+            <td align="right">类型：</td>
+            <td><input type="text" name="node_type" value="{$data.node_type}"/>(后台：1/前台：2)</td>
+        </tr>
+        <tr>
+            <td align="right">启用：</td>
+            <td>
+                <if condition="$data['node_promit'] eq 1">
+                    <input type="radio" name="node_promit" value="1" checked="checked"/>&nbsp;启用
+                    <input type="radio" name="node_promit" value="0"/>&nbsp;关闭
+                    <else/>
+                    <input type="radio" name="node_promit" value="1" />&nbsp;启用
+                    <input type="radio" name="node_promit" value="0" checked="checked"/>&nbsp;关闭
+                </if>
+
+
+            </td>
+        </tr>
+        <tr>
+            <td align="right">图标：</td>
+            <td>
+                <input type="text" value="{$data.node_ico}" name="node_ico" /><span  class="btn btn-default">图标</span>
+
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <input type="submit" value="更新" class="btn default"/>
+
+            </td>
+        </tr>
+    </table>
+
+    <input type="hidden" name="node_level" value="{$data.node_level}"/>
+    <input type="hidden" name="node_id" value="{$data.node_id}"/>
+</form>
+
+</body>
+</html>

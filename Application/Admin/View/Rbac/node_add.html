@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>node_add</title>
+    <style>
+        .mainbox{
+            min-height: 400px;
+            width: 100%;
+            border: 1px solid #cccccc;
+        }
+        .sim_box{
+            height: 30px;
+            width: 60%;
+            margin:  10px auto;
+            line-height: 30px;
+
+        }
+    </style>
+</head>
+<body>
+        <div class="mainbox">
+                <form action="{:U('node_add_handle')}" method="post">
+                    <div class="sim_box"><span>{$type}名称：</span><input type="text" name="node_name"/></div>
+                    <div class="sim_box"><span>{$type}描述：</span><input type="text" name="node_title"/></div>
+                    <div class="sim_box"><span>{$type}排序：</span><input type="text" name="node_sort"/></div>
+                    <div class="sim_box"> <span>启用：</span><input type="radio" name="node_status" value="1" checked="checked"/>启用<input type="radio" name="node_status" value="0"/>不启用</div>
+
+                    <input type="hidden" name="node_pid" value="{$pid}"/>
+                    <input type="hidden" name="node_level" value="{$level}"/>
+                    <div class="sim_box"><input type="submit"  value="添加"/></div>
+                </form>
+        </div>
+</body>
+</html>

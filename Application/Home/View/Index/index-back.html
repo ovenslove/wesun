@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="__PUBLIC__/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/css/font-awesome.min.css"/>
+
+    <link rel="stylesheet" href="__PUBLIC__/css/swiper.min.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/css/Index/index.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/css/Public/public.css"/>
+
+    <script src="__PUBLIC__/js/jquery-1.11.3.min.js"></script>
+    <script src="__PUBLIC__/js/bootstrap.min.js"></script>
+    <script src="__PUBLIC__/js/swiper.min.js"></script>
+</head>
+<body  class="container-fluid">
+<include file="Public/menu" />
+<div class=" headimgbox">
+
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" ><img src="__PUBLIC__/images/tuku/5.jpg" class="full" /></div>
+            <div class="swiper-slide" ><img src="__PUBLIC__/images/tuku/5.jpg" class="full" /></div>
+            <div class="swiper-slide" ><img src="__PUBLIC__/images/tuku/5.jpg" class="full" /></div>
+            <div class="swiper-slide" ><img src="__PUBLIC__/images/tuku/5.jpg" class="full" /></div>
+
+        </div>
+        <div class="swiper-pagination head_pagination"></div>
+        <!-- Add Arrows -->
+        <div class="swiper-button-next swiper-button-white"></div>
+        <div class="swiper-button-prev swiper-button-white"></div>
+    </div>
+</div>
+<div class="row" >
+    <div class=" col-xs-12 col-sm-12 col-md-8 col-md-offset-1" >
+        <div class="article_headbox">
+            <span class="art_head_title"><a href="{:U('Home/Article/index')}">博文推荐</a></span>
+        </div>
+        <div class="articlebox">
+
+            <div class="row">
+
+                <volist name="data" id="vo">
+
+                    <div class=" col-xs-12 col-sm-12 col-md-12 " >
+                        <div class="art_simbox">
+                            <div class="sim_logobox" style="background: url('{$vo.art_preimg}') no-repeat; background-size: cover;">
+
+                            </div>
+                            <div class="sim_contentbox">
+                                <div class="sim_head">
+                                    <div class="sim_con_title">
+                                        {$vo.art_title}
+                                    </div>
+                                    <a href="{:U('Home/Article/article',array('art_id'=>$vo['id']),'')}"><div class="sim_readmore">
+                                        阅读全文
+                                    </div></a>
+                                </div>
+                                <!--标签-->
+                                <div class="sim_head_intr">
+                                    <volist name="vo.art_mark" id="mark">
+                                        <span class="marklable">{$mark}</span>
+                                    </volist>
+
+                                </div>
+                                <!--正文简介-->
+                                <div class="sim_content">
+                                    {$vo.art_introduce}
+                                </div>
+                                <div class="sim_footintr">
+                                    <span style="margin-left: 10px;">{$vo.art_addtime|substr=0,10}</span>
+                                    <span><i class="fa fa-eye"></i>{$vo.art_readcount}</span>
+                                    <span><i class="fa fa-comment"></i>{$vo.art_commentcount}</span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </volist>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="col-xs-12 col-sm-4 col-md-2 hidden-xs hidden-sm  ">
+        <div class="asidebox">
+            <a href="{:U('Home/Article/index')}"><div class="aside_btn">博&nbsp;&nbsp;文</div></a>
+            <a href="{:U('Home/Demo/index')}"><div class="aside_btn">案&nbsp;&nbsp;例</div></a>
+            <a href="{:U('Home/Download/index')}"><div class="aside_btn">下&nbsp;&nbsp;载</div></a>
+            <div class="aside_btn">留&nbsp;&nbsp;言</div>
+            <div class="aside_btn">GitHub</div>
+
+            <div class="qrbox">
+                <img src="__PUBLIC__/images/Base/qrcode.png"  class="autoimg"/>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<include file="Public/footer" />
+</body>
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+        paginationClickable: true,
+        centeredSlides: true,
+        autoplay: 2500,
+        autoplayDisableOnInteraction: false,
+        loop:true
+    });
+</script>
+</html>

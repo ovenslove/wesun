@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,target-densitydpi=high-dpi,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+    <title>博文</title>
+    <link rel="stylesheet" href="__PUBLIC__/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/css/font-awesome.min.css"/>
+
+    <link rel="stylesheet" href="__PUBLIC__/css/swiper.min.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/css/Article/article.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/css/Public/public.css"/>
+    <script src="__PUBLIC__/js/jquery-1.11.3.min.js"></script>
+    <script src="__PUBLIC__/js/bootstrap.min.js"></script>
+    <script src="__PUBLIC__/js/swiper.min.js"></script>
+
+    <style>
+
+        .art_type{
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 12px;
+
+        }
+    </style>
+</head>
+<body class="container-fluid">
+
+<include file="Public/menu" />
+<div class="row" >
+    <div class=" col-xs-12 col-sm-12 col-md-10  col-md-offset-1">
+        <div class="headmarkbox">
+            <ul  class="mark_ul">
+                <a href="{:U('Home/Article/markshowarticle',array('mark'=>''),'')}"><li>全部</li></a>
+                    <volist name="mark" id="mk">
+                        <if condition="($markactive neq '' ) and ($markactive eq $mk['mark_name']) ">
+                            <li style="background: #568DF1; color: #ffffff;">{$markactive}</li>
+                        <else/>
+                            <a href="{:U('Home/Article/markshowarticle',array('mark'=>$mk['mark_name']),'')}"><li>{$mk.mark_name}</li></a>
+                        </if>
+
+                    </volist>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="row" >
+        <div class=" col-xs-12 col-sm-8 col-md-8 col-md-offset-1 i_mainbox" >
+            <div class="articlebox">
+
+                <div class="row">
+
+                    <volist name="data" id="vo">
+
+                        <div class=" col-xs-12 col-sm-12 col-md-12 " >
+                            <div class="art_simbox">
+                                <div class="sim_logobox" style="background: url('{$vo.art_preimg}') no-repeat; background-size: cover;">
+                                    <if condition="$vo.art_sort eq 1">
+                                           <span class="uptotop">置顶</span>
+                                    </if>
+                                    <if condition="$vo.art_sort eq 2">
+                                           <span class="recommend">推荐</span>
+                                    </if>
+                                    <if condition="$vo.art_sort eq 3">
+                                           <span class="essence">精华</span>
+                                    </if>
+                                </div>
+                                <div class="sim_contentbox">
+                                    <div class="sim_head">
+                                        <div class="sim_con_title">
+                                            <span class="label label-info art_type">{$vo.art_type}</span>
+                                            {$vo.art_title}
+                                        </div>
+                                        <a href="{:U('Home/Article/article',array('art_id'=>$vo['id']),'')}"><div class="sim_readmore">
+                                            阅读全文
+                                        </div></a>
+                                    </div>
+                                    <!--标签-->
+                                    <div class="sim_head_intr">
+                                        <i class="fa fa-tags " style="margin: 0 5px;"></i>
+                                        <volist name="vo.art_mark" id="mark">
+                                            <if condition="($markactive neq '' ) and ($markactive eq $mark) ">
+                                                <span class="marklable" style="background: #568DF1; color: #ffffff;">{$mark}</span>
+                                                <else/>
+                                                <span class="marklable">{$mark}</span>
+                                            </if>
+
+                                        </volist>
+
+                                    </div>
+                                    <!--正文简介-->
+                                    <div class="sim_content">
+                                        {$vo.art_introduce}
+                                    </div>
+                                    <div class="sim_footintr">
+                                        <span style="margin-left: 10px;">{$vo.art_addtime|substr=0,10}</span>
+                                        <span><i class="fa fa-eye"></i>{$vo.art_readcount}</span>
+                                        <span><i class="fa fa-comment"></i>{$vo.art_commentcount}</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </volist>
+
+                </div>
+                <div class="i_page">{$page}</div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-4 col-md-2 ">
+            <div class="i_sidebox">
+
+            </div>
+        </div>
+    </div>
+<include file="Public/footer" />
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+        paginationClickable: true,
+        centeredSlides: true,
+        autoplay: 2500,
+        autoplayDisableOnInteraction: false,
+        loop:true
+    });
+</script>
+</body>
+</html>

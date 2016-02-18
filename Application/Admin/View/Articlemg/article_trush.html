@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="__PUBLIC__/css/font-awesome.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/css/bootstrap.min.css"/>
+    <script type="text/javascript" src="__PUBLIC__/js/jquery-1.11.3.min.js"></script>
+
+    <script type="text/javascript" src="__PUBLIC__/js/bootstrap.min.js"></script>
+    <style>
+        table{
+            width: 100%;
+        }
+        th,td{
+            text-align: left;
+            height: 24px;
+        }
+        tr{
+            border: 1px solid #cccccc;
+        }
+        .Infomationbox{
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            background: rgba(0,0,0,0.6);
+            left: 0;
+            top: 0;
+            display: none;
+        }
+        .oversplite{
+            overflow: hidden;
+            width: 100px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            line-height: 30px;
+            font-size: 12px;
+        }
+        .art_all_ctrl{
+            height: 30px;
+        }
+        .art_all_ctrl button{
+            height: 30px;
+            font-size: 12px;
+        }
+        .art_all_ctrl ul{
+            margin-left: -40px;
+            min-width: 100px;
+        }
+        .art_all_ctrl ul li{
+            width: 100%;
+            text-align: center;
+            border-bottom: 1px solid #cccccc;
+        }
+        .i_page{
+            width: 100%;
+            height: 30px;
+            text-align: center;
+        }
+        .i_page a{
+            display: inline-block;
+            height: 30px;
+            width: 30px;
+            margin:  0 2px;
+            border: 1px solid #cccccc;
+            line-height: 30px;
+            text-align: center;
+            font-size: 16px;
+        }
+        .i_page .current{
+            display: inline-block;
+            height: 30px;
+            width: 30px;
+            margin:  0 2px;
+            border: 1px solid #cccccc;
+            background: #cccccc;
+            line-height: 30px;
+            text-align: center;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body style="position: relative;">
+<a href="{:U('Articlemg/article_trush')}">
+    <span class="btn backlist" style=" border: 1px solid #cccccc; margin: 10px ;">
+        <i class="fa fa-refresh" style="margin: auto 5px;"></i>刷新
+    </span>
+</a>
+
+<table class="table table-bordered table-hover">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>标题</th>
+        <th>简介</th>
+        <th>类型</th>
+        <th>标签</th>
+        <th>作者</th>
+        <th>时间</th>
+        <th>阅读</th>
+        <th>评论</th>
+        <th>操作</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <volist name="data" id="vo">
+        <if condition="$vo['art_sort'] eq 1">
+            <tr style="color: red;">
+                <else/>
+                <if condition="$vo['art_sort'] eq 2">
+                    <tr style="color: blue;">
+                        <else/>
+                        <if condition="$vo['art_sort'] eq 3">
+                            <tr style="color: #0FF560;">
+                                <else/>
+                            <tr>
+                        </if>
+                </if>
+        </if>
+
+
+        <td>{$vo.id}</td>
+        <td class="oversplite"><?php echo mb_substr($vo['art_title'], 0, 10, 'utf-8');?></td>
+        <td class="oversplite"><?php echo mb_substr($vo['art_introduce'], 0, 10, 'utf-8');?></td>
+        <td>{$vo.art_type}</td>
+        <td><?php echo mb_substr($vo['art_mark'], 0, 14, 'utf-8');?></td>
+        <td>{$vo.art_author}</td>
+        <td>{$vo.art_addtime|substr=0,10}</td>
+        <td>{$vo.art_readcount}</td>
+        <td>{$vo.art_commentcount}</td>
+        <td>
+            <!--<a href="{:U('Articlemg/article_totop',array('id'=>$vo['id'],'type'=>1) )}">[置顶]</a>-->
+            <!--<a href="{:U('Articlemg/article_recommend',array('id'=>$vo['id'],'type'=>1) )}">[推荐]</a>-->
+            <div class="dropdown art_all_ctrl">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    操作
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu " aria-labelledby="dropdownMenu1">
+                    <li>
+                        <if condition="$vo['art_status']  eq 1">
+                            <a href="{:U('Articlemg/article_status_handle',array('id'=>$vo['id'],'status'=>0) )}"><span style="color: red;">[删除]</span></a>
+                            <else/>
+                            <a href="{:U('Articlemg/article_status_handle',array('id'=>$vo['id'],'status'=>1) )}"><span style="color: #008000;">[恢复]</span></a>
+                        </if>
+                    </li>
+                    <li><a href="{:U('Articlemg/article_update',array('id'=>$vo['id'],'type'=>1) )}">[查看]</a></li>
+                    <li><a href="{:U('Articlemg/article_delete',array('id'=>$vo['id'],'type'=>1) )}">[删除]</a></li>
+                </ul>
+            </div>
+
+
+
+        </td>
+
+        </tr>
+    </volist>
+    </tbody>
+</table>
+<div class="i_page">{$page}</div>
+<div class="Infomationbox">
+
+</div>
+
+</body>
+<script>
+    $(function(){
+
+
+    })
+
+</script>
+</html>

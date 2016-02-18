@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+        <form action="{:U('Rbac/user_add_handle')}" method="post">
+           <table>
+               <tr>
+                   <th colspan="2">添加用户</th>
+               </tr>
+               <tr>
+                   <td>用户名：</td>
+                   <td><input type="text" name="username"/></td>
+               </tr>
+               <tr>
+                   <td>密码：</td>
+                   <td><input type="password" name="password"/></td>
+               </tr>
+               <tr>
+                   <td>别名：</td>
+                   <td><input type="text" name="remark"/></td>
+               </tr>
+               <tr>
+                   <td>邮箱：</td>
+                   <td><input type="text" name="email"/></td>
+               </tr>
+               <tr>
+                   <td>角色类型：</td>
+                   <td>
+                       <select name="role" >
+                           <option>请选择用户类型</option>
+                           <volist name="role" id="ro">
+                               <option value="{$ro.id}">  {$ro.remark}({$ro.name})</option>
+                           </volist>
+                       </select>
+                   </td>
+               </tr>
+               <tr>
+                   <td colspan="2" align="center"><input type="submit" value="确认添加"/></td>
+               </tr>
+
+           </table>
+        </form>
+</body>
+</html>

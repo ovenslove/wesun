@@ -1,0 +1,184 @@
+<include file="Base/header"/>
+
+<title>admin</title>
+<body >
+
+<div class="menubox ">
+    <div class="logobox">
+        <a href="__APP__/"><img src="__PUBLIC__/images/Base/wesunlogo.png"  style="height: 100%; width: auto;"/></a>
+    </div>
+    <div class="headullistbox" style="display: inline-block; float: right; margin-right:5%;">
+
+        <ul  class="headullist">
+            <li class="headlibig menu_headlist_btn" style="cursor: pointer"><img src="__PUBLIC__/images/Admin/loginlogo.png"  style="height: 25px; width: auto; border-radius: 5px; margin-right: 10px;"/>
+                <span style="font-size: 20px; line-height: 60px; display: inline-block; height: 60px;" >Admin</span>
+
+            </li>
+            <ul class="menu_headlist">
+                <li class="menu_libtn"><i class="    fa fa-cog "></i>设置</li>
+                <li class="menu_libtn"><i class=" fa fa-refresh "></i>更新缓存</li>
+                <a href="{:U('Login/login_out','','')}"><li class="menu_libtn">
+                    <i class=" fa  fa-sign-out "></i>退出</li></a>
+            </ul>
+
+        </ul>
+    </div>
+</div>
+
+
+    <div class="admin_mainbox container-fluid ">
+
+<div class="row" style="height: 100%;">
+
+
+
+            <div class="col-md-2 left_menu " >
+                <volist name="node" id="nd">
+
+
+                    <div class=" menu_simbox ">
+                        <div class="menu_head" ><i class=" fa fa-{$nd.node_ico} "></i>{$nd.node_intr}</div>
+                        <div class="menu_contentbox">
+
+                            <notempty name='nd[childs]'>
+                                <volist name="nd[childs]" id="ndc">
+                                    <div class="menu_list" cname="{$nd.node_name}" menuname={$ndc.node_name} view= {$ndc.node_view}><i class=" fa fa-{$ndc.node_ico} "></i>{$ndc.node_intr}</div>
+                                </volist>
+
+                            </notempty>
+
+                        </div>
+
+                    </div>
+                </volist>
+
+
+            </div><!--leftmenu-->
+
+
+            <div class="col-md-10 right_contentbox">
+
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs navmenu" role="tablist">
+
+                    </ul>
+
+                    <!-- Tab panes -->
+                    <div class="tab-content tab_contentbox">
+
+                    </div>
+
+
+            </div> <!--rightcontentbox-->
+
+
+       </div><!--row-->
+    </div><!--admin_mainbox-->
+
+
+<script type="text/javascript">
+
+    $(function(){
+
+        addtab('System','system_info','系统信息');
+//        addtab('role_add','添加角色');
+        $(".navmenu li").eq(0).find('i').remove();
+
+        $(".navmenu").on('click','.tapclose',function(){
+            var tabindex=$(this).parent().index();
+            if( $(this).parent().hasClass('active')){
+                $(".navmenu li").eq(0).addClass('active');
+                $(".tab_contentbox div").eq(0).addClass('active');
+            }
+            $(this).parent().remove();
+            $(".tab_contentbox div").eq(tabindex).remove();
+        })
+
+        $(".menu_head").click(function(){
+                if($(this).hasClass('menu_active')){
+                    $(this).next('div[class=menu_contentbox]').slideToggle();
+                }else{
+                    $(".menu_contentbox").slideUp();
+                    $(".menu_head").removeClass('menu_active');
+
+                    $(this).addClass('menu_active');
+
+                    $(this).next('div[class=menu_contentbox]').slideToggle();
+                }
+
+        })
+
+
+
+        $(".tab_contentbox").on('load','.iframbox',function(){
+            var mainheight = $(this).contents().find("body").height()+30;
+            $(this).height(mainheight);
+        });
+
+
+
+
+
+
+        function addtab(cname,menuname,menuintr){
+            tablistarr= new  Array();
+            $(".navmenu li a").each(function(){
+                tablistarr.push($(this).data('tablist'));
+
+            })
+            if($.inArray(menuname,tablistarr)>=0){
+                var listindex=$.inArray(menuname,tablistarr);
+                $(".navmenu li").removeClass('active');
+                $(".navmenu li").eq(listindex).addClass('active');
+
+                $(".tab_contentbox div").removeClass('active');
+                $(".tab_contentbox div").eq(listindex).addClass('active');
+            }else{
+                var tabstr='<li role="presentation"> ' +
+                        '<a href="#'+menuname+'" aria-controls="'+menuname+'" data-tablist="'+menuname+'" role="tab" data-toggle="tab">'+menuintr+'</a> ' +
+                        '<i class=" fa fa-close tapclose"></i> </li>';
+
+                var iframsrc="{:U('"+cname+"/"+menuname+"')}";
+                var ss='<iframe  src="'+iframsrc+'" class="iframbox"></iframe>';
+                var tabpanle='<div role="tabpanel" class="tab-pane active" id="'+menuname+'">'+ss+'</div>';
+
+                $(".navmenu").append(tabstr);
+                $(".tab_contentbox").append(tabpanle);
+
+                $(".navmenu li").removeClass('active');
+                $(".navmenu li:last").addClass('active');
+
+                $(".tab_contentbox div").removeClass('active');
+                $(".tab_contentbox div:last").addClass('active');
+                $("iframe").on('load',function(){
+                    var mainheight = $(this).contents().find("body").height()+50;
+                    $(this).height(mainheight);
+                });
+            }
+
+        }
+
+        $(".menu_list").click(function(){
+
+
+            var menuname=$(this).attr('menuname');
+            var cname=$(this).attr('cname');
+            var menuintr=$(this).text();
+            addtab(cname,menuname,menuintr);
+
+
+        });
+
+
+        $(".menu_headlist_btn").click(function(){
+            $(".menu_headlist").slideToggle();
+        });
+        $(".menu_headlist").mouseleave(function(){
+            $(".menu_headlist").slideUp();
+        });
+
+    })
+</script>
+
+
+<include file="Base/footer"/>

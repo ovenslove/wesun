@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+    <link rel="stylesheet" href="__PUBLIC__/css/reset.css"/>
+
+    <script type="text/javascript" src="__PUBLIC__/js/jquery-1.11.3.min.js"></script>
+    <style>
+        *{ margin: 0;
+            border: 0;
+            padding: 0;
+        }
+
+        html {height: 100%;
+            width: 100%;
+            position: relative; -webkit-text-size-adjust:none }
+        body{
+            height: 100%;
+            width: 100%;
+            position: relative;
+            background: #344F84;
+
+        }
+        .loginbox{
+            height: 400px;
+            width: 320px;
+            border: 1px solid #cccccc;
+            margin: auto;
+            position: relative;
+            top: 20%;
+            border-radius: 5px;
+            box-shadow: 0px 0px 16px -2px rgba(255,255,255,0.4);
+            background: rgba(255,255,255,0.2);
+        }
+        .con_box{
+            height: 400px;
+            width: 100%;
+            overflow: hidden;
+
+        }
+        .con_box:after{
+            content: '';
+            position: absolute;
+            height: 70px;
+            width: 70px;
+            right: -35px;
+            top: 210px;
+            border-radius: 50%;
+            border: 1px solid #cccccc;
+            clip: rect(0px,38px,72px,0px);
+            background: #344F84;
+        }
+        .logobox{
+            position: relative;
+            height: 100px;
+            width: 100px;
+            border: 1px solid #cccccc;
+            border-radius: 50%;
+            margin: auto;
+            top: 10%;
+            overflow: hidden;
+            text-align: center;
+        }
+        .logobox img{
+            height: 100%;
+            width: auto;
+        }
+        .l_simbox{
+            height: 35px;
+            width: 70%;
+            border-bottom: 1px solid #cccccc;
+            position: relative;
+            top: 15%;
+            margin: 10px auto;
+        }
+        .l_simbox:after{
+            content: '';
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            box-sizing: border-box;
+            right: 0px;
+            top: 0px;
+            border-left: 1px solid #cccccc;
+            border-right: 1px solid #cccccc;
+            clip: rect(32px,442px,49px,0px);
+
+        }
+        .l_input{
+            height: 100%;
+            width: 100%;
+            outline: none;
+            line-height: 45px;
+            font-size: 14px;
+            padding-left: 10px;
+            background: transparent;
+            color: #ffffff;
+        }
+
+        .l_title{
+            display: block;
+            height: 35px;
+            position: absolute;
+            left: 10px;
+            top: 30%;
+            font-size: 14px;
+            color: #BDCCD4;
+            font-weight: 700;
+            -webkit-transition: all 0.5s cubic-bezier(0, 0.62, 1, 1);
+            -moz-transition: all 0.5s cubic-bezier(0, 0.62, 1, 1);
+            -ms-transition: all 0.5s cubic-bezier(0, 0.62, 1, 1);
+            -o-transition: all 0.5s cubic-bezier(0, 0.62, 1, 1);
+            transition: all 0.5s cubic-bezier(0, 0.62, 1, 1);
+        }
+        .l_submit{
+            position: absolute;
+            height: 60px;
+            width: 60px;
+            border-radius: 50%;
+            right: -30px;
+            top: 215px;
+            border: 1px solid #cccccc;
+            background: #344F84;
+            /*box-shadow: 0px 0px 16px -2px rgba(52,79,132,1);*/
+            box-shadow: 0px 0px 16px -2px rgba(255,255,255,0.4);
+        }
+        .l_rightbtn{
+            height: 4px;
+            width: 20px;
+            background: #cccccc;
+            position: absolute;
+            left: 30%;
+            top: 50%;
+        }
+        .l_rightbtn:after{
+            content: '';
+            position: absolute;
+            display: block;
+            height: 10px;
+            width: 10px;
+            top: -5px;
+            right: 0px;
+            border-top: 4px solid #cccccc;
+            border-right: 4px solid #cccccc;
+            -webkit-transform: rotate(45deg);
+            -moz-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            -o-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+        .l_vertify{
+            min-height: 40px;
+            width: 70%;
+            background: #B0C0E0;
+            position: relative;
+            top: 15%;
+            left: 15%;
+        }
+        .l_vertify img{
+            width: 100%;
+            height: auto;
+        }
+        .l_submit_btn{
+            display: block;
+            height: 60px;
+            width: 60px;
+            border-radius: 50%;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="loginbox">
+    <form action=" {:U('login_check','','')}" method="post" autocomplete="off">
+        <input type="hidden" name="randnum" value="<php>echo rand()</php>"/>
+    <div class="con_box">
+
+
+        <div class="logobox">
+            <img src="__PUBLIC__/images/Admin/loginlogo.png" />
+        </div>
+
+        <div class="l_simbox">
+            <input type="text" name="username" id="username" class="l_input"/>
+            <span class="l_title">账号：</span>
+        </div>
+        <div class="l_simbox">
+            <input type="password" name="userpsd" id="userpsd" class="l_input"/>
+            <span class="l_title">密码：</span>
+        </div>
+        <div class="l_simbox">
+            <input type="text" name="usercheckcode" class="l_input"/>
+            <span class="l_title">验证码：</span>
+        </div>
+        <div class="l_vertify l_right">
+            <img src="{:U('New_verify')}" alt="验证码未显示，请刷新后再试" height="34" onclick="this.src='__URL__/New_verify/'+Math.random()"/>
+        </div>
+
+    </div>
+    <div class="l_submit">
+        <input type="submit" value="login" class="l_submit_btn"/>
+        <div class="l_rightbtn"></div>
+    </div>
+
+    </form>
+</div>
+
+<script>
+    $(function(){
+        $(".l_input").val('');
+        $(".l_input").focus(function(){
+            $(this).next('span[class=l_title]').animate({
+                'left':'0px',
+                'top':'-5px',
+                'font-size':'10px'
+
+            },1).css({
+                'color':'#EEF1DD'
+            });
+        });
+
+        $(".l_input").blur(function(){
+            if($(this).val()==""){
+                $(this).next('span[class=l_title]').animate({
+                    'left':'10px',
+                    'top':'30%',
+                    'font-size':'14px'
+
+                },1).css({
+                    'color':'#BDCCD4'
+                });
+            }else{
+
+            }
+
+        });
+
+
+    })
+</script>
+</body>
+</html>
