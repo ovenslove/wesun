@@ -1,0 +1,14 @@
+.input-li-group{ margin: 10px auto ;}
+#new_imgshow{ max-height: 200px;}
+.textarea_box{
+    min-height: 80px;
+    resize: none;
+}
+.img_up_btn{
+    position: absolute;
+    left: 54px;
+    z-index: 0;
+    width: 200px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}

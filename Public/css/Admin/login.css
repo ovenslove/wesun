@@ -1,0 +1,37 @@
+body{
+    background: rgb(67, 91, 136);
+}
+#loginbox{
+    border: 1px solid #cccccc;
+    border-radius: 10px;
+   margin-top: 20%;
+    background: rgba(255,255,255,0.1);
+    color: #FFFFFF;
+}
+#loginbox li{
+    border: none;
+    background: transparent;
+}
+#loginbox li input{
+    color: #FFFFFF;
+    background: transparent;
+}
+#loginbox .i_pre_span{
+    width: 50px;
+}
+#loginbox .input-group{
+    width: 100%;
+}
+#registbox li{
+    border: none;
+}
+#registbox .i_pre_span{
+    width: 50px;
+}
+#registbox .input-group{
+    width: 100%;
+}
+#submitbtn{
+    background: #ff0000 ;
+    margin:  0 auto; width: 60%; display: block;
+}

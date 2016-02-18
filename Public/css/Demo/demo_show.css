@@ -1,0 +1,54 @@
+.demobox{
+    background: transparent;
+    min-height: 800px;
+}
+.demobannerbox{
+    min-height: 400px;
+    background: #fff5d4;
+}
+.top_imgbox{
+    height: 400px;
+    width: 100%;
+    margin-top: 15px;
+}
+.full{
+    height: 100%;
+    width: 100%;
+}
+.demo_ctrbox{
+    height: 40px;
+    width: 100%;
+    text-align: center;
+}
+.demo_ctrbox span{
+    display: inline-block;
+    height: 100%;
+    width: 20%;
+    margin:  10px 10%;
+    background: #2D64B3;
+    line-height: 40px;
+    font-weight: 700;
+    font-size: 16px;
+    color: #ffffff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.demo_intr_box{
+    width: 100%;
+    height: auto;
+}
+.demo_intr_title{
+    height: 30px;
+    width: 100%;
+    background: #BBDFE4;
+    font-size: 1.3em;
+    line-height: 1.5em;
+    font-weight: 700;
+}
+.demo_intr_content{
+    width: 100%;
+    min-height: 100px;
+    background: #F1F1F1;
+    padding:10px;
+    line-height: 1.5em;
+}

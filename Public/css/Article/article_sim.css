@@ -1,0 +1,60 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: 0px;
+}
+/*art_mainbox 文章单页面主框*/
+
+.art_mainbox{
+    min-height: 100px;
+    width: 100%;
+    margin-bottom: 10px;
+    background: #f8f8f8;
+
+}
+.art_title{
+    display: block;
+    height: 80px;
+    width: 100%;
+    line-height: 80px;
+    font-size: 24px;
+    font-weight: 500;
+    text-align: center;
+    border-bottom: 1px solid #cccccc;
+}
+.art_intrbtn{
+    display: block;
+    min-height: 20px;
+    width: 100%;
+    font-size: 12px;
+    text-align: center;
+    line-height: 20px;
+    margin-top: -10px;
+}
+.art_intrbtn span{
+    margin: 0 10px;
+}
+.art_intr{
+    display: block;
+    min-height: 60px;
+    width: 100%;
+    border: 1px dashed #cccccc;
+    text-indent: 2em;
+    padding: 10px;
+    font-weight: 500;
+    font-size: 14px;
+}
+.art_content{
+    min-height: 100px;
+    width: 100%;
+    border-bottom: 1px solid #cccccc;
+    border-top: 1px solid #cccccc;
+    margin-top: 20px;
+    padding: 10px 10px 10px  10px;
+    overflow-x: auto;
+}
+.prearticle,.nextarticle{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

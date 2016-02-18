@@ -1,0 +1,183 @@
+
+/*案例demo类*/
+
+html,body{
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+}
+.sim_demo{
+    height: 200px;
+    width: 100%;
+    margin-bottom: 10px;
+    position: relative;
+    cursor: pointer;
+    box-sizing: border-box;
+    padding: 5px;
+    position: relative;
+    z-index: 11;
+
+}
+
+.sim_demo:hover:after{
+    content: '';
+    display: block;
+    height: 100%;
+    width: 100%;
+    border-bottom: 1px solid #0066cc;
+    border-top: 1px solid #0066cc;
+    position: absolute;
+    left: 0;
+    top: 0;
+    box-sizing: border-box;
+    animation: line 0.5s;
+    z-index: 10;
+    -webkit-animation: line 0.5s;
+    -moz-animation: line 0.5s;
+    -ms-animation: line 0.5s;
+    -o-animation: line 0.5s;
+
+}
+.sim_demo:hover:before{
+    content: '';
+    display: block;
+    height: 100%;
+    width: 100%;
+    border-left: 1px solid #0066cc;
+    border-right: 1px solid #0066cc;
+    position: absolute;
+    left: 0;
+    top: 0;
+    box-sizing: border-box;
+    animation: line2 0.5s;
+    z-index: 10;
+    -webkit-animation: line2 0.5s;
+    -moz-animation: line2 0.5s;
+    -ms-animation: line2 0.5s;
+    -o-animation: line2 0.5s;
+
+}
+
+@keyframes line {
+    0%{
+        transform: skew(70deg,0deg);
+        -ms-transform: skew(70deg,0deg);	/* IE 9 */
+        -webkit-transform: skew(70deg,0deg);	/* Safari and Chrome */
+        -o-transform: skew(70deg,0deg);	/* Opera */
+        -moz-transform: skew(70deg,0deg);	/* Firefox */
+    }
+    100%{
+        transform: skew(0deg,0deg);
+        -ms-transform: skew(0deg,0deg);	/* IE 9 */
+        -webkit-transform: skew(0deg,0deg);	/* Safari and Chrome */
+        -o-transform: skew(0deg,0deg);	/* Opera */
+        -moz-transform: skew(0deg,0deg);	/* Firefox */
+    }
+
+}
+@-webkit-keyframes line {
+    0%{
+        transform: skew(70deg,0deg);
+        -ms-transform: skew(70deg,0deg);	/* IE 9 */
+        -webkit-transform: skew(70deg,0deg);	/* Safari and Chrome */
+        -o-transform: skew(70deg,0deg);	/* Opera */
+        -moz-transform: skew(70deg,0deg);	/* Firefox */
+    }
+    100%{
+        transform: skew(0deg,0deg);
+        -ms-transform: skew(0deg,0deg);	/* IE 9 */
+        -webkit-transform: skew(0deg,0deg);	/* Safari and Chrome */
+        -o-transform: skew(0deg,0deg);	/* Opera */
+        -moz-transform: skew(0deg,0deg);	/* Firefox */
+    }
+
+}
+
+@keyframes line2 {
+    0%{
+        transform: skew(0deg,70deg);
+        -ms-transform: skew(0deg,70deg);	/* IE 9 */
+        -webkit-transform: skew(0deg,70deg);	/* Safari and Chrome */
+        -o-transform: skew(0deg,70deg);	/* Opera */
+        -moz-transform: skew(0deg,70deg);	/* Firefox */
+    }
+    100%{
+        transform: skew(0deg,0deg);
+        -ms-transform: skew(0deg,0deg);	/* IE 9 */
+        -webkit-transform: skew(0deg,0deg);	/* Safari and Chrome */
+        -o-transform: skew(0deg,0deg);	/* Opera */
+        -moz-transform: skew(0deg,0deg);	/* Firefox */
+    }
+
+
+}
+@-webkit-keyframes line2 {
+    0%{
+        transform: skew(0deg,70deg);
+        -ms-transform: skew(0deg,70deg);	/* IE 9 */
+        -webkit-transform: skew(0deg,70deg);	/* Safari and Chrome */
+        -o-transform: skew(0deg,70deg);	/* Opera */
+        -moz-transform: skew(0deg,70deg);	/* Firefox */
+    }
+    100%{
+        transform: skew(0deg,0deg);
+        -ms-transform: skew(0deg,0deg);	/* IE 9 */
+        -webkit-transform: skew(0deg,0deg);	/* Safari and Chrome */
+        -o-transform: skew(0deg,0deg);	/* Opera */
+        -moz-transform: skew(0deg,0deg);	/* Firefox */
+    }
+
+}
+.sim_demo_contentbox{
+    height: 100%;
+    width: 100%;
+    background: url("../../images/tuku/demolist.jpg") no-repeat;
+    background-size:100% 100%;
+    box-sizing: border-box;
+    position: relative;
+    border: 1px solid #cccccc;
+
+}
+.sim_demo_contentbox:hover:after{
+    content: '';
+    display: block;
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,0.5);
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 100;
+}
+
+/*标签*/
+.headmarkbox{
+    width: 100%;
+    min-height: 10px;
+    border: 1px solid #cccccc;
+    margin: 15px auto;
+}
+
+.mark_ul{
+    list-style: none;
+    margin: 0;
+}
+.mark_ul li{
+    display: inline-block;
+    height: 30px;
+    padding: 0 10px;
+    border: 1px solid #cccccc;
+    line-height: 30px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+.mark_ul li:hover{
+    background: #568DF1;
+    color: #ffffff;
+}
+
+/*模板内浏览量和下载量的符号样式*/
+.sim_span_foot i{
+    margin: 0 5px;
+}

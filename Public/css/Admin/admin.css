@@ -1,0 +1,154 @@
+
+body{
+    overflow: auto;
+}
+.menubox{
+    height: 60px;
+    width: 100%;
+    border: 1px solid #cccccc;
+    background: #F5F5F5;
+    box-shadow: 5px 0px 20px -5px rgba(0,0,0,0.8);
+    clear: both;
+}
+.logobox{
+    height: 100%;
+    width: auto;
+    float: left;
+    clear: both;
+}
+.menubox .headullist{
+    display: block;
+    height: 100%;
+    width: auto;
+    list-style: none;
+    line-height: 60px;
+}
+.menubox .headullist .headlibig{
+    height: 100%;
+    min-width: 30px;
+    float: left;
+    margin: 0 10px;
+    line-height: 60px;
+    text-align: center;
+}
+.menu_headlist_btn{
+    padding: 0 10px;
+}
+.menu_btn{
+    display: none;
+}
+.menu_headlist{
+    position: absolute;
+    top: 65px;
+    z-index: 1000;
+    width: 150px;
+    padding: 0;
+    height: auto;
+    list-style: none;
+    border: 1px solid #cccccc;
+    display: none;
+}
+.menu_headlist .menu_libtn{
+    display: block;
+    height: 30px;
+    width: 100%;
+    margin: 2px auto;
+    text-align: left;
+    line-height: 30px;
+    padding: 0 0px;
+    background: #F5F5F5;
+    cursor: pointer;
+}
+.menu_headlist .menu_libtn:hover{
+    background: #87A9DE;
+}
+.menu_headlist .menu_libtn i{
+    margin: 0 5px;
+}
+.admin_mainbox{
+
+    width: 100%;
+    position: relative;
+    top: 10px;
+    float: none;
+}
+.left_menu{
+    height: auto;
+}
+.right_contentbox{
+    height: 100%;
+}
+.tab-content{
+    display: block;
+    height: 100%;
+}
+.navmenu{
+   /*background: #A0E0FF;*/
+}
+
+.navmenu li a{
+    border-radius: 0px !important;
+    margin-right: 10px;
+}
+.navmenu li a:hover{
+    background: #fff;
+}
+.tab-pane{
+    /*background: #F5F5F5;*/
+    height: 90%;
+    display: block;
+
+}
+.tapclose{
+    position: absolute;
+    right: 12px;
+    top: 0px;
+    color: #9E9797;
+}
+
+.menu_simbox{
+    min-height: 40px;
+    width: 100%;
+    border: 1px solid #cccccc;
+    margin: 1px auto;
+}
+.menu_head{
+    height: 40px;
+    background: #ccc;
+    width: 100%;
+    text-align: left;
+    line-height: 40px;
+    font-size: 18px;
+}
+.menu_head i{
+    margin: auto 10px;
+}
+.menu_contentbox{
+    height: auto;
+    width: 100%;
+    display: none;
+}
+
+.menu_list{
+    height: 40px;
+    margin: 2px auto;
+    background: #f5f5f5;
+    line-height: 40px;
+
+}
+.menu_list i {
+    margin: auto 10px auto 20px;
+}
+.menu_list:hover{
+    background: #CDC3FF;
+}
+.menu_active{
+    background: #0066cc;
+}
+
+.iframbox{
+
+    width: 100%;
+    border: none;
+    overflow: hidden;
+}
